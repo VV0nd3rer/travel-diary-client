@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    background-image: url("https://i.pinimg.com/originals/5d/27/d8/5d27d85fc308894f687b9305048d8384.jpg");
+    background-size: cover;
+    padding: 5%;
+    height: 100%;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.card {
+    width: 30%;
+}
+.card-header {
+    background: #d9ffba;
+}
+.card-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 4%;
+}
+.card-title-icon {
+    color: #4147ff;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+}
+.submit-button {
+    display: flex;
+    justify-content: flex-end;
+}
