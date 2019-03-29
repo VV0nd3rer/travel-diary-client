@@ -12,8 +12,9 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
 
   register(registrationForm: RegistrationForm) : Observable<any> {
-    return this.http.post("user/register", registrationForm)
+    return this.http.post("http://localhost:8080/user/register", registrationForm)
         .pipe(
+            tap(res => console.log(`results: ${res}`)),
             map(res => {
               return res;
             }),

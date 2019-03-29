@@ -21,10 +21,10 @@
       <mat-form-field class="item" hintLabel="Min 5 characters">
         <input matInput #input minlength="5" formControlName="username" placeholder="Username">
         <mat-hint align="end">{{input.value?.length || 0}}/5</mat-hint>
-        <mat-error *ngIf="registrationForm.controls.username.errors.required">
+        <mat-error *ngIf="registrationForm.controls.username.hasError('required')">
           Please enter your name
         </mat-error>
-        <mat-error *ngIf="registrationForm.controls.username.errors.minlength">
+        <mat-error *ngIf="registrationForm.controls.username.hasError('minlength')">
           Name must be at least 5 characters long.
         </mat-error>
       </mat-form-field>

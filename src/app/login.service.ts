@@ -29,7 +29,7 @@ export class LoginService {
     }
 
   login(user: User) : Observable<any> {
-      return this.http.post("user/login", user)
+      return this.http.post("http://localhost:8080/user/login", user)
         .pipe(
             map(res => {
               return res;

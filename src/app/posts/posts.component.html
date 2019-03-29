@@ -1,121 +1,81 @@
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <mat-form-field class="search-form">
-    <input matInput placeholder="Search Picture" type="text">
-  </mat-form-field>
-  <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
+     xmlns="http://www.w3.org/1999/html">
+
+    <mat-form-field class="search-form">
+        <input matInput placeholder="Search Picture" type="text">
+    </mat-form-field>
+    <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
 
 
+    <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
 
-<div  fxLayout="row wrap"  fxLayoutAlign="center" class="card-deck-container">
-  <div fxFlex="60%" class="card-container"
-       [(ngModel)]="entity" name="entity" ngDefaultControl
-       *ngFor="let post of entity" >
-<mat-card class="card-item">
-  <mat-card-header>
-    <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
-  </mat-card-header>
+        <div fxFlex="60%" class="card-container"
+             [(ngModel)]="entity" name="entity" ngDefaultControl
+             *ngFor="let post of entity">
 
-  <!--<img mat-card-image src="{{post.description}}">-->
+            <mat-card class="card-item">
 
-  <mat-card-content>
-    <div>
-      <pre>{{post.description}}</pre>
+                <mat-card-header>
+                    <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div>
+                        <pre>{{post.description}}</pre>
+                    </div>
+                    <div class="card-text-content">
+                        {{post.description}}
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-button>Read more</button>
+                    <button mat-button>Like</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+    </div> <!-- card-deck-container -->
+    <div fxLayout="column">
+        <mat-paginator
+                [length]="25"
+                [pageSize]="5"
+                [pageSizeOptions]="[12, 24]"
+                (page)="updateUsersDisplayedInPage($event)">
+        </mat-paginator>
     </div>
-    <div class="card-text-content">
-      {{post.description}}
+
+    <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
+        <div fxFlex="30%" *ngFor="let post of entity" class="card-container">
+            <mat-card class="card-item">
+                <mat-card-header>
+                    <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                </mat-card-header>
+
+                <img mat-card-image src="{{post.description}}">
+
+                <mat-card-content>
+                    <div class="card-text-content">
+                        {{post.description}}
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-button>Read more</button>
+                    <button mat-button>Like</button>
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+    </div> <!--card-deck-container -->
+    <div fxLayout="column" *ngIf="entity.length > 0">
+        <mat-paginator
+                [length]="25"
+                [pageSize]="5"
+                [pageSizeOptions]="[12, 24]"
+                (page)="updateUsersDisplayedInPage($event)">
+        </mat-paginator>
     </div>
-
-  </mat-card-content>
-
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-    <button mat-button>Read more</button>
-    <button mat-button>Like</button>
-  </mat-card-actions>
-
-</mat-card>
-    </div>
-  </div>
-  <div class="paginator mat-elevation-z4" >
-    <mat-paginator
-            [length]="paginatorSize"
-            [pageSize]="numberOfUsersDisplayedInPage"
-            [pageSizeOptions]="[12, 24]"
-            (page)="updateUsersDisplayedInPage($event)">
-    </mat-paginator>
-  </div>
-
-  <p>Hi</p>
-  <div  fxLayout="row wrap"  fxLayoutAlign="center" class="card-deck-container">
-    <div fxFlex="30%" *ngFor="let post of entity" class="card-container">
-      <mat-card class="card-item">
-        <mat-card-header>
-          <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
-        </mat-card-header>
-
-        <img mat-card-image src="{{post.description}}">
-
-        <mat-card-content>
-          <div class="card-text-content">
-            {{post.description}}
-          </div>
-        </mat-card-content>
-
-        <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-          <button mat-button>Read more</button>
-          <button mat-button>Like</button>
-        </mat-card-actions>
-
-      </mat-card>
-    </div>
-  </div>
-  <div class="paginator mat-elevation-z4" *ngIf="entity.length > 0">
-    <mat-paginator
-            [length]="paginatorSize"
-            [pageSize]="numberOfUsersDisplayedInPage"
-            [pageSizeOptions]="[12, 24]"
-            (page)="updateUsersDisplayedInPage($event)">
-    </mat-paginator>
-  </div>
-
-<div class="example-container mat-elevation-z8">
-
-  <mat-table [dataSource]="dataSource" matSort>
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="progress">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-    </ng-container>
-
-    <!-- Color Column -->
-    <ng-container matColumnDef="color">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="img">
-      <mat-header-cell *matHeaderCellDef mat-sort-heade> Image </mat-header-cell>
-      <mat-cell *matCellDef="let row"> <img style="width: 30%; height: 40%" src="{{row.img}}" /> </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
-  </mat-table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
 
 </div>
