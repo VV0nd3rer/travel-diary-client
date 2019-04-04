@@ -1,11 +1,12 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
      xmlns="http://www.w3.org/1999/html">
 
-    <mat-form-field class="search-form">
-        <input matInput placeholder="Search Picture" type="text">
-    </mat-form-field>
-    <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
-
+    <div class="container">
+        <mat-form-field class="search-form">
+            <input matInput placeholder="Search Picture" type="text">
+        </mat-form-field>
+        <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
+    </div>
 
     <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
 
@@ -36,7 +37,7 @@
         </div>
 
     </div> <!-- card-deck-container -->
-    <div fxLayout="column">
+    <div fxLayout="row" class="container" fxLayoutAlign="center">
         <mat-paginator
                 [length]="25"
                 [pageSize]="5"
@@ -69,7 +70,7 @@
         </div>
 
     </div> <!--card-deck-container -->
-    <div fxLayout="column" *ngIf="entity.length > 0">
+    <div fxLayout="row" class="container" fxLayoutAlign="center" *ngIf="entity.length > 0">
         <mat-paginator
                 [length]="25"
                 [pageSize]="5"
