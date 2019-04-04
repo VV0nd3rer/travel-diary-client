@@ -24,6 +24,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PostsComponent } from './posts/posts.component';
 import { CookieService } from 'ngx-cookie-service';
 
+/* Access modifiers in TypeScript:
+ * Everything in a class is public if not specified.
+ * Everything in a module is private unless export keyword is used.*/
+
 /*An NgModule describes how the application parts fit together.
 
   Every application has at least one Angular module,

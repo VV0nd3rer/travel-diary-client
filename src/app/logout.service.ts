@@ -10,7 +10,7 @@ export class LogoutService {
 
   constructor(private http: HttpClient) { }
   logout() : Observable<any> {
-    return this.http.get("user/logout")
+    return this.http.get("//localhost:8080" + "user/logout")
         .pipe(
             map(res => {
               return res;
