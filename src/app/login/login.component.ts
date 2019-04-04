@@ -4,24 +4,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { User } from '../user';
 import {ServiceResponse} from "../service-response";
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: any;
-  user: User = {
-    username: '',
-    password: ''
-  };
+  user: User;
+  loginForm: FormGroup;
+
   serviceResponse: ServiceResponse<User>;
 
   loginError: boolean = false;
 
   constructor(private loginService: LoginService,
               private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private cookieService: CookieService) {
     this.loginForm = this.formBuilder.group({
       'username': ['', [Validators.required]],
       'password': ['', [Validators.required]]
@@ -38,7 +39,8 @@ export class LoginComponent implements OnInit {
         .subscribe(data => this.user = data);
   }
   login(): void {
-    this.loginService.login(this.user).subscribe(
+    console.log(this.cookieService.get('XSRF-TOKEN'));
+    this.loginService.login(this.loginForm.value).subscribe(
       res => {
         this.serviceResponse = res;
         this.serviceResponse.responseCode != "OK" ? this.loginError = true :
