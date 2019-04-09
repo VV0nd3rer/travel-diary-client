@@ -33,3 +33,7 @@
     display: flex;
     justify-content: flex-end;
 }
+.alert-msg {
+    color: #ff0000;
+    font-size: 95%;
+}

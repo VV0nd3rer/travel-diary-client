@@ -1,6 +1,4 @@
-<div *ngIf="loginService.isLoggedIn == true">
-  Welcome :)
-</div>
+
 <div class="container" fxLayout="row wrap">
 <form [formGroup]="loginForm" (submit)="login()"
       class="form"
@@ -17,6 +15,9 @@
     <mat-card-content>
       <div class="alert-msg" [hidden]="!loginError">
         There was a problem logging in. Please try again.
+      </div>
+      <div class="alert-msg" [hidden]="!internalServerError">
+        Internal server error. Please try again later.
       </div>
       <mat-form-field class="item">
         <input matInput placeholder="Username" formControlName="username" required>

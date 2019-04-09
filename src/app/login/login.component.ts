@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
-import { User } from '../user';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user';
 import {ServiceResponse} from "../service-response";
 import { CookieService } from 'ngx-cookie-service';
 
@@ -18,11 +18,13 @@ export class LoginComponent implements OnInit {
   serviceResponse: ServiceResponse<User>;
 
   loginError: boolean = false;
+  internalServerError: boolean = false;
 
-  constructor(private loginService: LoginService,
+  constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router,
               private cookieService: CookieService) {
+
     this.loginForm = this.formBuilder.group({
       'username': ['', [Validators.required]],
       'password': ['', [Validators.required]]
@@ -33,22 +35,22 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  test(): void {
-    event.preventDefault();
-    this.loginService.getTest()
-        .subscribe(data => this.user = data);
-  }
+
   login(): void {
     console.log(this.cookieService.get('XSRF-TOKEN'));
-    this.loginService.login(this.loginForm.value).subscribe(
+    this.userService.login(this.loginForm.value).subscribe(
       res => {
         this.serviceResponse = res;
-        this.serviceResponse.responseCode != "OK" ? this.loginError = true :
-            this.router.navigateByUrl('/');
-      }/*,
+        if(this.serviceResponse.responseCode != "OK") {
+          this.loginError = true;
+        } else {
+          this.userService.setLoggedUser(this.serviceResponse.responseObject);
+          this.router.navigateByUrl('/');
+        }
+      },
         error => {
-          console.error(`There was an error loading user: ${error}`);
-        }*/
+          this.internalServerError = true;
+        }
     );
   }
 }

@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <div>
     <a routerLink="/posts">Inspire me!</a>
+    <div *ngIf="currentUser">Welcome {{currentUser.username}}</div>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
@@ -9,6 +10,9 @@
       </li>
       <li>
         <a routerLink="/registration">Registration</a>
+      </li>
+      <li>
+        <a routerLink="/" (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>

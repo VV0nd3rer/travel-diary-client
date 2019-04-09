@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../validation.service';
 
 import { Router } from '@angular/router';
-import { RegistrationForm } from '../registration-form';
-import { RegistrationService } from '../registration.service';
-import {ServiceResponse} from "../service-response";
+import { RegistrationForm } from '../user/registration-form';
+import { UserService } from '../user/user.service';
+import { ServiceResponse } from "../service-response";
 
 
 @Component({
@@ -18,9 +18,10 @@ export class RegistrationComponent implements OnInit {
 
   serviceResponse: ServiceResponse<any>;
 
-  error: boolean = false;
+  registrationError: boolean = false;
+  internalServerError: boolean = false;
 
-  constructor(private registrationService: RegistrationService,
+  constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private router: Router) {
     this.registrationForm = this.formBuilder.group({
@@ -31,7 +32,6 @@ export class RegistrationComponent implements OnInit {
     }, {
       validator: ValidationService.passwordMismatchValidator
     });
-    /*console.log(this.registrationForm);*/
   }
 
   ngOnInit() {
@@ -39,14 +39,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(): void {
-    this.registrationService.register(this.registrationForm).subscribe(
+    this.userService.register(this.registrationForm).subscribe(
         res => {
           /*console.log(res);*/
           this.serviceResponse = res;
-          this.serviceResponse.responseCode != "OK" ? this.error = true :
+          this.serviceResponse.responseCode != "OK" ? this.registrationError = true :
               this.router.navigateByUrl('/');
         },
-        err => { this.error = true; }
+        error => { this.internalServerError = true; }
     );
   }
 
