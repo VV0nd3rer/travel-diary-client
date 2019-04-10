@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {LogoutService} from "../logout.service";
+import {UserService} from "../user/user.service";
 import {ServiceResponse} from "../service-response";
 
 @Component({
@@ -10,13 +10,13 @@ import {ServiceResponse} from "../service-response";
 export class LogoutComponent implements OnInit {
   serviceResponse: ServiceResponse<any>;
 
-  constructor(private logoutService: LogoutService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
       this.logout();
   }
   logout(): void {
-    this.logoutService.logout().subscribe(
+    this.userService.logout().subscribe(
         res => {
           this.serviceResponse = res;
           if (this.serviceResponse.responseCode == "OK") {

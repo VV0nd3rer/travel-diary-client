@@ -15,7 +15,7 @@ export class PostsService {
     }
 
     getPostsPage(currentPage:any):Observable<any> {
-        return this.http.get(this.baseUrl + '/posts/page/' + currentPage)
+        return this.http.get('//localhost:8080/posts/page/' + currentPage)
             .pipe(
                 tap(val => console.log(`Calling getAllPosts method. The response: ${val}`)),
                 map(res => {

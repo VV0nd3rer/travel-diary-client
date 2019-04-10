@@ -5,52 +5,66 @@ import { UserService } from '../user/user.service';
 import { User } from '../user/user';
 import {ServiceResponse} from "../service-response";
 import { CookieService } from 'ngx-cookie-service';
+import {Post} from "../post";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User;
-  loginForm: FormGroup;
+    user:User;
+    loginForm:FormGroup;
 
-  serviceResponse: ServiceResponse<User>;
+    serviceResponse:ServiceResponse<User>;
 
-  loginError: boolean = false;
-  internalServerError: boolean = false;
+    loginError:boolean = false;
+    internalServerError:boolean = false;
 
-  constructor(private userService: UserService,
-              private formBuilder: FormBuilder,
-              private router: Router,
-              private cookieService: CookieService) {
+    testData: User = {};
 
-    this.loginForm = this.formBuilder.group({
-      'username': ['', [Validators.required]],
-      'password': ['', [Validators.required]]
-    });
-  }
+    constructor(private userService:UserService,
+                private formBuilder:FormBuilder,
+                private router:Router,
+                private cookieService:CookieService) {
 
-
-  ngOnInit() {
-  }
+        this.loginForm = this.formBuilder.group({
+            'username': ['', [Validators.required]],
+            'password': ['', [Validators.required]]
+        });
+    }
 
 
-  login(): void {
-    console.log(this.cookieService.get('XSRF-TOKEN'));
-    this.userService.login(this.loginForm.value).subscribe(
-      res => {
-        this.serviceResponse = res;
-        if(this.serviceResponse.responseCode != "OK") {
-          this.loginError = true;
-        } else {
-          this.userService.setLoggedUser(this.serviceResponse.responseObject);
-          this.router.navigateByUrl('/');
-        }
-      },
-        error => {
-          this.internalServerError = true;
-        }
-    );
-  }
+    ngOnInit() {
+    }
+
+    testMe():void {
+        this.userService.getTestCall().subscribe(
+            res => {
+                console.log(res);
+                this.testData = res;
+            },
+            error => {
+                console.log(error);
+            }
+        )
+    }
+
+    login():void {
+        console.log(this.cookieService.get('XSRF-TOKEN'));
+        this.userService.login(this.loginForm.value).subscribe(
+            res => {
+                this.serviceResponse = res;
+                if (this.serviceResponse.responseCode != "OK") {
+                    this.loginError = true;
+                } else {
+                    this.userService.setLoggedUser(this.serviceResponse.responseObject);
+                    this.router.navigateByUrl('/');
+                }
+            },
+            error => {
+                this.internalServerError = true;
+            }
+        );
+    }
 }

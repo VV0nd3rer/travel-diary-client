@@ -10,20 +10,23 @@ import { UserService } from '../../user/user.service';
 })
 export class NavigationBarComponent implements OnInit {
   currentUser: User;
+  serviceResponse:ServiceResponse;
 
   constructor(private userService: UserService, private router: Router) {
     this.userService.loggedInUser.subscribe(x => this.currentUser = x);
     console.log(this.currentUser);
   }
+  ngOnInit() {}
+
   logout(): void {
-    debugger;
     this.userService.logout().subscribe(
         res => {
-            this.router.navigateByUrl('/');
+          console.log(JSON.stringify(res));
+          this.serviceResponse = res;
+          if(this.serviceResponse.responseCode == "OK") {
+            this.userService.setLoggedUser(null);
+          }
         }
     );
   }
-  ngOnInit() {
-  }
-
 }

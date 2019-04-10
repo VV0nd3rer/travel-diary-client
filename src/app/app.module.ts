@@ -9,7 +9,10 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import {
+    HttpClientModule,
+    HTTP_INTERCEPTORS
+} from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { ControlMessagesComponent } from './control-messages.component';
@@ -23,6 +26,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PostsComponent } from './posts/posts.component';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
 
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
@@ -59,7 +63,14 @@ import { CookieService } from 'ngx-cookie-service';
     /* The providers array is where you list the services the app needs.
        When you list services here, they are available app-wide.
        You can scope them when using feature modules and lazy loading.*/
-    providers: [CookieService],
+    providers: [
+        CookieService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor,
+            multi: true
+        }
+    ],
     /* The providers array is where you list the services the app needs.
        When you list services here, they are available app-wide.
        You can scope them when using feature modules and lazy loading.*/

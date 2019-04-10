@@ -1,4 +1,8 @@
+<div>
+  <button (click)="testMe()">Test me!</button>
 
+  <p>Value: {{testData.username}}</p>
+</div>
 <div class="container" fxLayout="row wrap">
 <form [formGroup]="loginForm" (submit)="login()"
       class="form"
