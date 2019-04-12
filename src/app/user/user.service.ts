@@ -16,14 +16,6 @@ export class UserService {
 
     baseUrl = environment.baseUrl;
 
-    const
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        }),
-        withCredentials: true
-    };
-
     constructor(private http:HttpClient) {
         this.loggedInUserSubject = new BehaviorSubject<User>(null);
         this.loggedInUser = this.loggedInUserSubject.asObservable();
@@ -41,9 +33,11 @@ export class UserService {
         return this.http.get(this.baseUrl + "/test")
             .pipe(
                 map(res => {
+                    console.log("Test call res: `${res}`");
                     return res;
                 }),
                 catchError(error => {
+                    console.log("Test call error: `${error}`");
                     return throwError(error);
                 })
             );
@@ -51,7 +45,7 @@ export class UserService {
 
     login(user:User):Observable<any> {
 
-        return this.http.post(this.baseUrl + "/user/login", user, this.httpOptions)
+        return this.http.post(this.baseUrl + "/user/login", user)
             .pipe(
                 map(res => {
                     return res;

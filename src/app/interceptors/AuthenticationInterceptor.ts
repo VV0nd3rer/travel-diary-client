@@ -14,21 +14,14 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
-    const
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        }),
-        withCredentials: true
-    };
+
     constructor(private cookieService:CookieService) { }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("jsessionid: " + this.cookieService.get('JSESSIONID'));
         const clonedRequest =
             request.clone(
-                { headers: request.headers.set('Set-Cookie', 'JSESSIONID=' + this.cookieService.get('JSESSIONID')),
-                    withCredentials: true
-                }
+                { withCredentials: true }
             );
         return next.handle(clonedRequest);
         /*return next.handle(request).pipe(
