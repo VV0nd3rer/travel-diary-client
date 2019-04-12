@@ -27,6 +27,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PostsComponent } from './posts/posts.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
+import { BooksComponent } from './books/books.component';
 
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
@@ -48,7 +49,8 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
         RegistrationComponent,
         NavigationBarComponent,
         BottomBarComponent,
-        PostsComponent
+        PostsComponent,
+        BooksComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
        this particular module needs to function properly.*/
