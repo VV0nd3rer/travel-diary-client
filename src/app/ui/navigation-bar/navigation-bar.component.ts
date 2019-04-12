@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../user/user';
 import { UserService } from '../../user/user.service';
+import {ServiceResponse} from "../../service-response";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -10,7 +11,7 @@ import { UserService } from '../../user/user.service';
 })
 export class NavigationBarComponent implements OnInit {
   currentUser: User;
-  serviceResponse:ServiceResponse;
+  serviceResponse:ServiceResponse<User>;
 
   constructor(private userService: UserService, private router: Router) {
     this.userService.loggedInUser.subscribe(x => this.currentUser = x);

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     loginError:boolean = false;
     internalServerError:boolean = false;
 
-    testData: User = {};
+    testData: User = new User();
 
     constructor(private userService:UserService,
                 private formBuilder:FormBuilder,
