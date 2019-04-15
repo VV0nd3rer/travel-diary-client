@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
     HttpRequest,
@@ -9,13 +9,14 @@ import {
     HttpResponse,
     HttpErrorResponse
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError, of } from "rxjs";
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
-    constructor(private cookieService:CookieService) { }
+    constructor(private cookieService:CookieService, private userService: UserService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("jsessionid: " + this.cookieService.get('JSESSIONID'));
@@ -23,14 +24,20 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             request.clone(
                 { withCredentials: true }
             );
-        return next.handle(clonedRequest);
-        /*return next.handle(request).pipe(
+        return next.handle(clonedRequest).pipe(
             map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                    console.log('HttpResponse event--->>>', event);
+                if(event instanceof HttpResponse) {
+                    console.log("Http Response event: ", event);
                 }
-                console.log('event--->>>', event);
                 return event;
-            }));*/
+            }),
+            catchError(error => {
+               console.log("Error response status: ", error.status);
+                if(error.status === 401) {
+                    this.userService.setLoggedUser(null);
+                }
+                return of([]);
+            }));
+
     }
 }
