@@ -3,7 +3,7 @@
 
     <div class="container">
         <mat-form-field class="search-form">
-            <input matInput placeholder="Search Picture" type="text">
+            <input matInput placeholder="Search" type="text">
         </mat-form-field>
         <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
     </div>
@@ -21,17 +21,18 @@
                 </mat-card-header>
 
                 <mat-card-content>
-                    <div>
-                        <pre>{{post.description}}</pre>
-                    </div>
-                    <div class="card-text-content">
-                        {{post.description}}
+                    <div class="card-text-content" [innerHTML]="post.description">
                     </div>
                 </mat-card-content>
 
                 <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
                     <button mat-button>Read more</button>
-                    <button mat-button>Like</button>
+                    <button title="Wish to go there" mat-icon-button color="primary">
+                        <mat-icon>flight_takeoff</mat-icon>
+                    </button>
+                    <button title="Have visited this place" mat-icon-button color="primary">
+                        <mat-icon>check</mat-icon>
+                    </button>
                 </mat-card-actions>
             </mat-card>
         </div>
@@ -53,17 +54,21 @@
                     <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
                 </mat-card-header>
 
-                <img mat-card-image src="{{post.description}}">
+                <!--<img mat-card-image src="{{post.description}}">-->
 
                 <mat-card-content>
-                    <div class="card-text-content">
-                        {{post.description}}
+                    <div class="card-text-content" [innerHTML]="post.description">
                     </div>
                 </mat-card-content>
 
                 <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
                     <button mat-button>Read more</button>
-                    <button mat-button>Like</button>
+                    <button title="Wish to go there" mat-icon-button color="primary">
+                        <mat-icon>flight_takeoff</mat-icon>
+                    </button>
+                    <button title="Have visited this place" mat-icon-button color="primary">
+                        <mat-icon>check</mat-icon>
+                    </button>
                 </mat-card-actions>
 
             </mat-card>
