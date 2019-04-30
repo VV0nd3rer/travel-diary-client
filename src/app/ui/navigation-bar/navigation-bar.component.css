@@ -12,6 +12,10 @@ a:hover, a:active{
 }
 mat-toolbar{
   border-radius: 3px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 @media(max-width: 959px){
