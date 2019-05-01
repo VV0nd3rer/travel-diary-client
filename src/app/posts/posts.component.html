@@ -1,87 +1,86 @@
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
-     xmlns="http://www.w3.org/1999/html">
-
-    <div class="container">
-        <mat-form-field class="search-form">
-            <input matInput placeholder="Search" type="text">
-        </mat-form-field>
-        <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
-    </div>
-
-    <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
-
-        <div fxFlex="60%" class="card-container"
-             [(ngModel)]="entity" name="entity" ngDefaultControl
-             *ngFor="let post of entity">
-
-            <mat-card class="card-item">
-
-                <mat-card-header>
-                    <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
-                </mat-card-header>
-
-                <mat-card-content>
-                    <div class="card-text-content" [innerHTML]="post.description">
-                    </div>
-                </mat-card-content>
-
-                <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-button>Read more</button>
-                    <button title="Wish to go there" mat-icon-button color="primary">
-                        <mat-icon>flight_takeoff</mat-icon>
-                    </button>
-                    <button title="Have visited this place" mat-icon-button color="primary">
-                        <mat-icon>check</mat-icon>
-                    </button>
-                </mat-card-actions>
-            </mat-card>
+<div class="global-container">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
+         xmlns="http://www.w3.org/1999/html">
+    
+        <div class="container">
+            <mat-form-field class="search-form">
+                <input matInput placeholder="Search" type="text">
+            </mat-form-field>
+            <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
         </div>
-
-    </div> <!-- card-deck-container -->
-    <div fxLayout="row" class="container" fxLayoutAlign="center">
-        <mat-paginator
-                [length]="25"
-                [pageSize]="5"
-                [pageSizeOptions]="[12, 24]"
-                (page)="updateUsersDisplayedInPage($event)">
-        </mat-paginator>
-    </div>
-
-    <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
-        <div fxFlex="30%" *ngFor="let post of entity" class="card-container">
-            <mat-card class="card-item">
-                <mat-card-header>
-                    <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
-                </mat-card-header>
-
-                <!--<img mat-card-image src="{{post.description}}">-->
-
-                <mat-card-content>
-                    <div class="card-text-content" [innerHTML]="post.description">
-                    </div>
-                </mat-card-content>
-
-                <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-button>Read more</button>
-                    <button title="Wish to go there" mat-icon-button color="primary">
-                        <mat-icon>flight_takeoff</mat-icon>
-                    </button>
-                    <button title="Have visited this place" mat-icon-button color="primary">
-                        <mat-icon>check</mat-icon>
-                    </button>
-                </mat-card-actions>
-
-            </mat-card>
+    
+        <!-- <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
+    
+            <div fxFlex="60%" class="card-container"
+                 [(ngModel)]="entity" name="entity" ngDefaultControl
+                 *ngFor="let post of entity">
+    
+                <mat-card class="card-item">
+    
+                    <mat-card-header>
+                        <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                    </mat-card-header>
+    
+                    <mat-card-content>
+                        <div>
+                            <pre>{{post.description}}</pre>
+                        </div>
+                        <div class="card-text-content">
+                            {{post.description}}
+                        </div>
+                    </mat-card-content>
+    
+                    <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-button>Read more</button>
+                        <button mat-button>Like</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
         </div>
-
-    </div> <!--card-deck-container -->
-    <div fxLayout="row" class="container" fxLayoutAlign="center" *ngIf="entity.length > 0">
-        <mat-paginator
-                [length]="25"
-                [pageSize]="5"
-                [pageSizeOptions]="[12, 24]"
-                (page)="updateUsersDisplayedInPage($event)">
-        </mat-paginator>
+    
+        <div fxLayout="row" class="container" fxLayoutAlign="center">
+            <mat-paginator
+                    [length]="25"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 12, 24]"
+                    (page)="updateUsersDisplayedInPage($event)">
+            </mat-paginator>
+        </div> -->
+    
+        <div fxLayout="row wrap" fxLayoutAlign="left" class="card-deck-container">
+            <div fxFlex="33%" *ngFor="let post of entity" class="card-container">
+                <mat-card class="card-item">
+                    <mat-card-header>
+                        <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                    </mat-card-header>
+    
+                    <!-- <img mat-card-image src="{{post.description}}" alt="Picture"> -->
+                    <mat-card-content>
+                        <div class="card-text-content" [innerHTML]="post.description">
+                        </div>
+                    </mat-card-content>
+    
+                    <mat-card-actions fxLayout="row" fxLayoutAlign="end">
+                        <button mat-button>Read more</button>
+                        <button title="Wish to go there" mat-icon-button color="primary">
+                            <mat-icon>flight_takeoff</mat-icon>
+                        </button>
+                        <button title="Have visited this place" mat-icon-button color="primary">
+                            <mat-icon>check</mat-icon>
+                        </button>
+                    </mat-card-actions>
+    
+                </mat-card>
+            </div>
+    
+        </div> <!--card-deck-container -->
+        <div fxLayout="row" class="container" fxLayoutAlign="center" *ngIf="entity.length > 0">
+            <mat-paginator
+                    [length]="25"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 12, 24]"
+                    (page)="updateUsersDisplayedInPage($event)">
+            </mat-paginator>
+        </div>    
     </div>
-
 </div>
