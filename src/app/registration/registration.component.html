@@ -36,7 +36,7 @@
       </mat-form-field>
 
         <mat-form-field class="item">
-          <input matInput placeholder="Password"  formControlName="password">
+          <input type="password" matInput placeholder="Password"  formControlName="password">
           <mat-error *ngIf="registrationForm.controls.password.hasError('required')">
             Please enter your password
           </mat-error>
@@ -45,7 +45,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="item">
-          <input matInput formControlName="confirmPassword" placeholder="Confirm password">
+          <input type="password" matInput formControlName="confirmPassword" placeholder="Confirm password">
           <mat-error *ngIf="registrationForm.controls.confirmPassword.hasError('required')">
             Please confirm your password
           </mat-error>
