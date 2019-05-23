@@ -2,11 +2,18 @@
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
          xmlns="http://www.w3.org/1999/html">
     
-        <div class="container">
-            <mat-form-field class="search-form">
-                <input matInput placeholder="Search" type="text">
-            </mat-form-field>
-            <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
+        <div class="container clearfix">
+            <div class="search">
+                <mat-form-field class="search-form">
+                    <input matInput placeholder="Search" type="text">
+                </mat-form-field>
+                <button class="search-button" button="submit" mat-raised-button color="primary">Search</button>
+            </div>
+
+            <div class="view-style">
+                <span><i class="fas fa-th-list" (click)="changeView('list')"></i></span>
+                <span><i class="fas fa-th" (click)="changeView('grid')"></i></span>
+            </div>
         </div>
     
         <!-- <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
@@ -37,18 +44,12 @@
                 </mat-card>
             </div>
         </div>
+        -->
     
-        <div fxLayout="row" class="container" fxLayoutAlign="center">
-            <mat-paginator
-                    [length]="25"
-                    [pageSize]="5"
-                    [pageSizeOptions]="[5, 12, 24]"
-                    (page)="updateUsersDisplayedInPage($event)">
-            </mat-paginator>
-        </div> -->
-    
-        <div fxLayout="row wrap" fxLayoutAlign="left" class="card-deck-container">
-            <div fxFlex="33%" *ngFor="let post of entity" class="card-container">
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
+            <div *ngFor="let post of entity" class="card-container" [ngClass]="layout == 'list' ? 'list' : 'grid'">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>

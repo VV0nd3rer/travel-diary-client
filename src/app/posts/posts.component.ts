@@ -12,7 +12,11 @@ import { Post } from "../post";
 })
 export class PostsComponent implements OnInit {
 
+  layout: string = '';
 
+  changeView = function(layout) {
+    this.layout = layout;
+  }
 
   @Input() entity: Post[] = [];
 

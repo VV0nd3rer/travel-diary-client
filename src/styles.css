@@ -4,6 +4,11 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.clearfix:after, .clearfix:before {
+    content: "";
+    display: block;
+    clear: both;
+}
 a:hover {
     transition: all 0.3s ease-out;
 }

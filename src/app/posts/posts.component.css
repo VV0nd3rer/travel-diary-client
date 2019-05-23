@@ -2,6 +2,9 @@
     width: 100%;
     margin-top: 65px;
 }
+.search {
+    float: left;
+}
 .search-button {
     margin-left: 20px;
 }
@@ -12,6 +15,28 @@
 .search-form {
     font-size: 14px;
     padding: 20px 0;
+}
+.view-style {
+    float: right;
+    padding-top: 25px;
+}
+.view-style i {
+    color: #3f51b5;
+    font-size: 40px;
+    margin-right: 10px;
+}
+.view-style i:hover {
+    cursor: pointer;
+    color: #3a76cf;
+    transition: all 0.3s ease-out;
+}
+.list {
+    width: 100%;
+    padding: 5px 8px;
+}
+.grid {
+    width: 31%;
+    padding: 5px 8px;
 }
 .card-deck-container {
     position: relative;
@@ -25,8 +50,7 @@
 .card-item {
     position: relative;
     height: 400px;
-    word-wrap: break-word;
-    text-align: justify;    
+    word-wrap: break-word;   
 }
 .card-item mat-card-content {
     height: 300px;
