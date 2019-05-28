@@ -12,7 +12,7 @@ import { Post } from "../post";
 })
 export class PostsComponent implements OnInit {
 
-  layout: string = '';
+  layout: string = 'grid';
 
   changeView = function(layout) {
     this.layout = layout;

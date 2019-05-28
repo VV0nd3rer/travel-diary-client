@@ -1,3 +1,14 @@
+.header {
+  background: url("../../../img/headercut.png") center no-repeat;
+  background-size: cover;
+  height: 220px;
+}
+mat-toolbar{
+  background: rgba(0, 59, 39, 0.7);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
 mat-toolbar ul li a {
   text-decoration: none;
   color: white;
@@ -9,12 +20,6 @@ mat-toolbar ul li a:hover {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-mat-toolbar{
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
 }
 #site-name {
   text-decoration: none;

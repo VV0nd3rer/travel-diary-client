@@ -9,10 +9,28 @@ body {
     display: block;
     clear: both;
 }
-a:hover {
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+a:hover, button:hover {
     transition: all 0.3s ease-out;
 }
 .global-container {
-    width: 1100px;
+    /* width: 1100px; */
     margin: auto;
+}
+@media screen and (max-width: 479px) {
+    .global-container {width: 92%;}
+}
+@media screen and (min-width: 480px) {
+    .global-container {width: 95%;}
+}
+@media screen and (min-width: 740px) {
+    .global-container {width: 95%;}
+}
+@media screen and (min-width: 960px) {
+    .global-container {width: 95%;}
+}
+@media screen and (min-width: 1200px) {
+    .global-container {width: 1100px;}
 }

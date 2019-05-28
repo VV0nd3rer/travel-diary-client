@@ -1,28 +1,30 @@
-<mat-toolbar color="primary">
-  <div fxFlex fxLayout>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li><a routerLink="/posts">Inspire me!</a></li>
-      <li><a routerLink="/books">Books</a></li>
-      <li></li>
-    </ul>  
-  </div>
-  <div fxFlex fxLayoutAlign="center">
-    <a id="site-name" routerLink="/"><em>Travel Diary</em></a>
-  </div>
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
-        <a routerLink="/login">Login</a>
-      </li>
-      <li>
-        <a routerLink="/registration">Registration</a>
-      </li>
-      <li>
-        <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
-      </li>
-      <li>
-        <a routerLink="/" (click)="logout()">Logout</a>
-      </li>
-    </ul>
-  </div>
-</mat-toolbar>
+<div class="header">
+  <mat-toolbar>
+    <div fxFlex fxLayout>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li><a routerLink="/posts">Inspire me!</a></li>
+        <li><a routerLink="/books">Books</a></li>
+        <li></li>
+      </ul>  
+    </div>
+    <div fxFlex fxLayoutAlign="center">
+      <a id="site-name" routerLink="/"><em>Travel Diary</em></a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li>
+          <a routerLink="/login">Login</a>
+        </li>
+        <li>
+          <a routerLink="/registration">Registration</a>
+        </li>
+        <li>
+          <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
+        </li>
+        <li>
+          <a routerLink="/" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar>
+</div>

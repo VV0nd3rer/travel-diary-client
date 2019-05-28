@@ -1,4 +1,10 @@
-.bottom-icon {
-    color: #ff5248;
-    padding: 5px;
+mat-toolbar {
+    border-top: 1px solid #aa853c;
+    background: radial-gradient(25% 70%, #FAECD5, #cfa654);
+    /* background: #cfa654; */
+}
+.bottom-icon i {
+    color: #ff2c20;
+    padding: 2px 0 2px 5px;
+    border-radius: 10px;
 }
