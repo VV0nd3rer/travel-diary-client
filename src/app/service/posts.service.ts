@@ -10,12 +10,13 @@ import { environment } from '../../environments/environment';
 })
 export class PostsService {
     baseUrl = environment.baseUrl;
+    endpoint = this.baseUrl + "/posts";
 
     constructor(private http:HttpClient) {
     }
 
-    getPostsPage(currentPage:any):Observable<any> {
-        return this.http.get('//localhost:8080/posts/page/' + currentPage)
+    getPostsPage(requestParams?: any):Observable<any> {
+        return this.http.get(this.endpoint, { params: requestParams})
             .pipe(
                 tap(val => console.log(`Calling getAllPosts method. The response: ${val}`)),
                 map(res => {

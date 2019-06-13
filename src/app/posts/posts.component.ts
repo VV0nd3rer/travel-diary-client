@@ -12,33 +12,40 @@ import { Page } from "../model/page";
     styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+    page: Page <Post[]> = new Page();
 
+    // Object vs Map
+    // https://medium.com/front-end-weekly/es6-map-vs-object-what-and-when-b80621932373
 
+    //An object which stores HTTP GET request parameters for getting posts
+    //Example of request: <base-url>/posts?author=33&current_page=1
+    requestParams = {};
 
-  @Input() entity: Post[] = [];
-
-  ngOnInit() {
-    this.updateUsersDisplayedInPage(null);
-  }
-  constructor(private postService: PostsService) {
-
-  }
-  ngAfterViewInit() {
-
-  }
-
-  updateUsersDisplayedInPage(event?: PageEvent) {
-    let currentPage: number;
-    if(event === null) {
-      currentPage = 1;
-    } else {
-      currentPage = event.pageIndex+1;
+    ngOnInit() {
+        this.updatePage();
     }
-    this.postService.getPostsPage(currentPage).subscribe(
-        res => {
-          this.entity = res;
+
+    constructor(private postService: PostsService) {
+
+    }
+
+    updatePage(event?: PageEvent) {
+        if(event) {
+            this.requestParams['page'] = event.pageIndex;
+            this.requestParams['size'] = event.pageSize;
         }
-    )
-  }
+        this.postService.getPostsPage(this.requestParams).subscribe(
+            data => {
+                this.parsePaginationResponse(data);
+            }
+        )
+    }
+    private parsePaginationResponse(data: any) {
+        this.page.content = data.resources.content;
+        this.page.totalPages = data.totalPages;
+        this.page.totalElements = data.totalElements;
+        this.page.currentPage = data.currentPage;
+        this.page.pageSize = data.pageSize;
+    }
 }
 
