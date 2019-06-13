@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../user/user';
-import { UserService } from '../../user/user.service';
-import {ServiceResponse} from "../../service-response";
+import { User } from '../../model/user';
+import { UserService } from '../../service/user.service';
+import {ServiceResponse} from "../../model/service-response";
 
 @Component({
   selector: 'app-navigation-bar',

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LogoutService } from './logout.service';
+import { ValidationService } from './validation.service.ts';
 
-describe('LogoutService', () => {
+describe('ValidationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: LogoutService = TestBed.get(LogoutService);
+    const service: ValidationService = TestBed.get(ValidationService);
     expect(service).toBeTruthy();
   });
 });

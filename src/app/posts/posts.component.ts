@@ -1,14 +1,15 @@
 import {Component, ViewChild, Input, OnInit} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
-import {PostsService} from "../posts.service";
-import { Post } from "../post";
+import {PostsService} from "../service/posts.service";
+import { Post } from "../model/post";
+import { Page } from "../model/page";
 
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+    selector: 'app-posts',
+    templateUrl: './posts.component.html',
+    styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
 

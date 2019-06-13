@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ValidationService } from '../validation.service';
+import { ValidationService } from '../service/validation.service';
 
 import { Router } from '@angular/router';
-import { RegistrationForm } from '../user/registration-form';
-import { UserService } from '../user/user.service';
-import { ServiceResponse } from "../service-response";
+import { RegistrationForm } from '../model/registration-form';
+import { UserService } from '../service/user.service';
+import { ServiceResponse } from "../model/service-response";
 
 
 @Component({

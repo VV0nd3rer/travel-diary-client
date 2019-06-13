@@ -15,7 +15,6 @@ import {
 } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
-import { ControlMessagesComponent } from './control-messages.component';
 
 
 import { NavigationBarComponent } from './ui/navigation-bar/navigation-bar.component';
@@ -43,7 +42,6 @@ import { BooksComponent } from './books/books.component';
        As you create more components, add them to declarations.*/
     declarations: [
         AppComponent,
-        ControlMessagesComponent,
         LoginComponent,
         LogoutComponent,
         RegistrationComponent,

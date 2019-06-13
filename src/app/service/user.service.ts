@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { User } from './user';
-import { RegistrationForm } from './registration-form';
-import {ServiceResponse} from "../service-response";
+import { User } from './../model/user';
+import { RegistrationForm } from './../model/registration-form';
+import {ServiceResponse} from "../model/service-response";
 import { environment } from  '../../environments/environment';
 
 @Injectable({

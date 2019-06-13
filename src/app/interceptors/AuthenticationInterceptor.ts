@@ -11,7 +11,7 @@ import {
 } from "@angular/common/http";
 import { Observable, throwError, of } from "rxjs";
 import { CookieService } from 'ngx-cookie-service';
-import { UserService } from '../user/user.service';
+import { UserService } from '../service/user.service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
