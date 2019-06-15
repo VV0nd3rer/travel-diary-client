@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, of} from "../../../node_modules/rxjs/index.d";
+import {Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
