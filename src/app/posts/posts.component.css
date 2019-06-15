@@ -2,14 +2,14 @@
     border-top: 2px solid #49aa3c;
     background: linear-gradient(45deg, rgb(228, 240, 121), rgb(142, 226, 93));
 }
-.search {
-    float: left;
-}
 .search-button {
     margin-left: 20px;
     background: none;
-    font-size: 25px;
     border-radius: 100%;
+}
+.search-button i {
+    font-size: 40px;
+    font-weight: 700;
 }
 .search-button:hover {
     background: rgb(0, 0, 0, 0.2);
@@ -23,13 +23,11 @@
     font-size: 20px;
 }
 .view-style {
-    float: right;
     padding-top: 25px;
 }
 .view-style i {
     color: rgb(52, 207, 86);
-    font-size: 40px;
-    margin-right: 10px;
+    font-size: 60px;
 }
 .view-style i:hover {
     cursor: pointer;
@@ -61,7 +59,7 @@
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
     position: relative;
     height: 400px;
-    word-wrap: break-word;   
+    word-wrap: break-word;
 }
 .card-item mat-card-content {
     height: 300px;

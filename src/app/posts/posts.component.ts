@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
 import {PostsService} from "../posts.service";
 import { Post } from "../post";
+import { DataViewMode} from "../view-mode";
 
 
 @Component({
@@ -12,10 +13,10 @@ import { Post } from "../post";
 })
 export class PostsComponent implements OnInit {
 
-  layout: string = 'grid';
-
-  changeView = function(layout) {
-    this.layout = layout;
+  viewModeEnum = DataViewMode;
+  currentView: DataViewMode = this.viewModeEnum.Grid;
+  changeViewMode(mode: DataViewMode):void {
+    this.currentView = mode;
   }
 
   @Input() entity: Post[] = [];

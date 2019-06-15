@@ -1,22 +1,21 @@
     <div class="post-main-div" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
          xmlns="http://www.w3.org/1999/html">
         <div class="global-container">
-        <div class="clearfix">
-            <div class="search">
+        <div fxLayout="row wrap">
+            <div class="search" fxFlex>
                 <mat-form-field class="search-form">
                     <input matInput autocomplete="off" placeholder="Search" type="text">
                 </mat-form-field>
-                <button class="search-button" button="submit" mat-raised-button><i class="fas fa-search"></i></button>
+                <button class="search-button" button="submit" mat-raised-button><i class="material-icons">search</i></button>
             </div>
-
-            <div class="view-style">
-                <span><i class="fas fa-th-list" (click)="changeView('list')" [ngClass]="{'view-active' : layout == 'list'}"></i></span>
-                <span><i class="fas fa-th" (click)="changeView('grid')" [ngClass]="{'view-active' : layout == 'grid'}"></i></span>
+            <div class="view-style" fxFlex fxLayoutAlign="end">
+                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)" [ngClass]="{'view-active' : currentView == 'list'}">view_list</i></span>
+                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)" [ngClass]="{'view-active' : currentView == 'grid'}">view_module</i></span>
             </div>
         </div>
     
         <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
-            <div *ngFor="let post of entity" class="card-container" [ngClass]="layout == 'list' ? 'list' : 'grid'">
+            <div *ngFor="let post of entity" class="card-container" [ngClass]="currentView">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>

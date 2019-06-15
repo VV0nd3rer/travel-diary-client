@@ -5,6 +5,5 @@ mat-toolbar {
 }
 .bottom-icon i {
     color: #ff2c20;
-    padding: 2px 0 2px 5px;
-    border-radius: 10px;
+    padding: 2px 0 2px 5px; 
 }
