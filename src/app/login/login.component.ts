@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../user/user.service';
-import { User } from '../user/user';
-import {ServiceResponse} from "../service-response";
+import { UserService } from '../service/user.service';
+import { User } from '../model/user';
+import {ServiceResponse} from "../model/service-response";
 import { CookieService } from 'ngx-cookie-service';
-import {Post} from "../post";
+import {Post} from "../model/post";
 
 @Component({
     selector: 'app-login',

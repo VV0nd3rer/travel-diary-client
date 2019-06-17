@@ -1,27 +1,27 @@
-    <div class="post-main-div" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center"
-         xmlns="http://www.w3.org/1999/html">
-        <div class="global-container">
-        <div fxLayout="row wrap">
-            <div class="search" fxFlex>
-                <mat-form-field class="search-form">
-                    <input matInput autocomplete="off" placeholder="Search" type="text">
-                </mat-form-field>
-                <button class="search-button" button="submit" mat-raised-button><i class="material-icons">search</i></button>
-            </div>
-            <div class="view-style" fxFlex fxLayoutAlign="end">
-                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)" [ngClass]="{'view-active' : currentView == 'viewModeEnum.List'}">view_list</i></span>
-                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)" [ngClass]="{'view-active' : currentView == 'viewModeEnum.Grid'}">view_module</i></span>
-            </div>
+<div class="post-main-div" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+<div class="global-container">
+    <div fxLayout="row wrap">
+        <div class="search" fxFlex>
+
+            <mat-form-field class="search-form">
+                <input matInput autocomplete="off" placeholder="Search" type="text">
+            </mat-form-field>
+            <button class="search-button" button="submit" mat-raised-button><i class="material-icons">search</i></button>
         </div>
-    
-        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container">
-            <div *ngFor="let post of entity" class="card-container" [ngClass]="currentView">
+
+        <div class="view-style" fxFlex fxLayoutAlign="end">
+            <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)"
+                     [ngClass]="{'view-active' : currentView == viewModeEnum.List}">view_list</i></span>
+            <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)"
+                     [ngClass]="{'view-active' : currentView == viewModeEnum.Grid}">view_module</i></span>
+        </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="page.content?.length">
+            <div *ngFor="let post of page.content" class="card-container" [ngClass]="currentView">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
                     </mat-card-header>
-    
-                    <!-- <img mat-card-image src="{{post.description}}" alt="Picture"> -->
                     <mat-card-content>
                         <div class="card-text-content" [innerHTML]="post.description">
                         </div>
@@ -39,14 +39,13 @@
     
                 </mat-card>
             </div>
-    
         </div> <!--card-deck-container -->
-        <div fxLayout="row" fxLayoutAlign="center" *ngIf="entity.length > 0">
+        <div fxLayout="row" fxLayoutAlign="center" *ngIf="page.content?.length">
             <mat-paginator
-                    [length]="25"
-                    [pageSize]="5"
+                    [length]="page.totalElements"
+                    [pageSize]="page.pageSize"
                     [pageSizeOptions]="[5, 12, 24]"
-                    (page)="updateUsersDisplayedInPage($event)">
+                    (page)="updatePage($event)">
             </mat-paginator>
         </div>    
     </div>
