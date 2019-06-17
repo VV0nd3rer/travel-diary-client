@@ -9,8 +9,8 @@
                 <button class="search-button" button="submit" mat-raised-button><i class="material-icons">search</i></button>
             </div>
             <div class="view-style" fxFlex fxLayoutAlign="end">
-                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)" [ngClass]="{'view-active' : currentView == 'viewModeEnum.List'}">view_list</i></span>
-                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)" [ngClass]="{'view-active' : currentView == 'viewModeEnum.Grid'}">view_module</i></span>
+                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)" [ngClass]="{'view-active' : currentView == viewModeEnum.List}">view_list</i></span>
+                <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)" [ngClass]="{'view-active' : currentView == viewModeEnum.Grid}">view_module</i></span>
             </div>
         </div>
     
