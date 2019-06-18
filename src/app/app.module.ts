@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMugHot, faHeart,
+         faTh, faBars,
+         faSignInAlt, faUserPlus,
+         faPlaneDeparture, faMapMarked,
+         faSearch} from '@fortawesome/free-solid-svg-icons';
+
 import {
     FormsModule,
     ReactiveFormsModule
@@ -28,6 +36,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
 import { BooksComponent } from './books/books.component';
 
+library.add(faHeart, faMugHot,
+    faTh, faBars,
+    faSignInAlt, faUserPlus,
+    faPlaneDeparture, faMapMarked,
+    faSearch);
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
  * Everything in a module is private unless export keyword is used.*/
@@ -58,7 +71,8 @@ import { BooksComponent } from './books/books.component';
         ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
-        MaterialModule
+        MaterialModule,
+        FontAwesomeModule
     ],
     /* The providers array is where you list the services the app needs.
        When you list services here, they are available app-wide.

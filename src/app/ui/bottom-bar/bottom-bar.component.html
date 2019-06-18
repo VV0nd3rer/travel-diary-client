@@ -1,6 +1,8 @@
 <mat-toolbar>
   <div fxFlex fxLayout="row wrap"  fxLayoutAlign="center" fxHide.xs>
-    <div fxLayoutAlign="center">All you need is love
-      <mat-icon class="bottom-icon"><i class="material-icons">favorite</i></mat-icon></div>
+    <div fxLayoutAlign="center" fxLayoutGap="10px"><span>All you need is love</span>
+      <fa-icon class="bottom-icon" [icon]="['fas', 'heart']"></fa-icon><span>and</span>
+      <fa-icon class="bottom-icon" [icon]="['fas', 'mug-hot']"></fa-icon>
+    </div>
   </div>
 </mat-toolbar>

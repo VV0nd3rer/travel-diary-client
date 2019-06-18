@@ -22,19 +22,16 @@
 .search-form input {
     font-size: 20px;
 }
-.view-style {
-    padding-top: 25px;
-}
-.view-style i {
+.view-mode i {
     color: rgb(52, 207, 86);
-    font-size: 60px;
+    font-size: 35px;
 }
-.view-style i:hover {
+.view-mode i:hover {
     cursor: pointer;
     color: #27aa3d;
     transition: all 0.3s ease-out;
 }
-.view-style .view-active {
+.view-mode .active-view {
     color: #1c7a0f;
 }
 .list {

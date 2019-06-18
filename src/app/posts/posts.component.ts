@@ -6,7 +6,6 @@ import { Post } from "../model/post";
 import { Page } from "../model/page";
 import { DataViewMode } from "../service/view-mode";
 
-
 @Component({
     selector: 'app-posts',
     templateUrl: './posts.component.html',
@@ -16,8 +15,6 @@ export class PostsComponent implements OnInit {
     page:Page <Post[]> = new Page();
     viewModeEnum = DataViewMode;
     currentView:DataViewMode = this.viewModeEnum.Grid;
-
-
 
 
     // Object vs Map

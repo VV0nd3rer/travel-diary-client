@@ -6,14 +6,20 @@
             <mat-form-field class="search-form">
                 <input matInput autocomplete="off" placeholder="Search" type="text">
             </mat-form-field>
-            <button class="search-button" button="submit" mat-raised-button><i class="material-icons">search</i></button>
+            <button class="search-button" button="submit" mat-raised-button>
+                <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
+            </button>
         </div>
 
-        <div class="view-style" fxFlex fxLayoutAlign="end">
-            <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.List)"
-                     [ngClass]="{'view-active' : currentView == viewModeEnum.List}">view_list</i></span>
-            <span><i class="material-icons" (click)="changeViewMode(viewModeEnum.Grid)"
-                     [ngClass]="{'view-active' : currentView == viewModeEnum.Grid}">view_module</i></span>
+        <div class="view-mode" fxFlex fxLayoutAlign="end center" fxLayoutGap="15px">
+            <i (click)="changeViewMode(viewModeEnum.List)"
+                    [ngClass]="{'active-view' : currentView == viewModeEnum.List}">
+                <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+            </i>
+            <i (click)="changeViewMode(viewModeEnum.Grid)"
+               [ngClass]="{'active-view' : currentView == viewModeEnum.Grid}">
+                <fa-icon [icon]="['fas', 'th']"></fa-icon>
+            </i>
         </div>
         </div>
         <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="page.content?.length">
@@ -30,10 +36,10 @@
                     <mat-card-actions fxLayout="row" fxLayoutAlign="end">
                         <button mat-button>Read more</button>
                         <button title="Wish to go there" mat-icon-button>
-                            <mat-icon>flight_takeoff</mat-icon>
+                            <fa-icon [icon]="['fas', 'plane-departure']" size="lg"></fa-icon>
                         </button>
                         <button title="Have visited this place" mat-icon-button>
-                            <mat-icon>check</mat-icon>
+                            <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
                         </button>
                     </mat-card-actions>
     
