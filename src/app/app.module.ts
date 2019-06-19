@@ -52,6 +52,8 @@ import { PostsComponent } from './posts/posts.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
 import { BooksComponent } from './books/books.component';
+import { MultimediaComponent } from './multimedia/multimedia.component';
+import { SightsComponent } from './sights/sights.component';
 
 library.add(faHeart, faMugHot,
     faTh, faBars,
@@ -78,7 +80,9 @@ library.add(faHeart, faMugHot,
         NavigationBarComponent,
         BottomBarComponent,
         PostsComponent,
-        BooksComponent
+        BooksComponent,
+        MultimediaComponent,
+        SightsComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
        this particular module needs to function properly.*/
