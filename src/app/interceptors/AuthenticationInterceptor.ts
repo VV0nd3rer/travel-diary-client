@@ -20,7 +20,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
-        //console.log("jsessionid: " + this.cookieService.get('JSESSIONID'));
         const clonedRequest =
             request.clone(
                 {withCredentials: true}
