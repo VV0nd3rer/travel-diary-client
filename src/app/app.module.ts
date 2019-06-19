@@ -1,5 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+/*The layout package provides utilities to build responsive UIs that react to screen-size changes.*/
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import {
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatListModule,
+    MatGridListModule
+} from '@angular/material';
+
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -21,9 +41,6 @@ import {
     HttpClientModule,
     HTTP_INTERCEPTORS
 } from '@angular/common/http';
-
-import { MaterialModule } from './material.module';
-
 
 import { NavigationBarComponent } from './ui/navigation-bar/navigation-bar.component';
 import { BottomBarComponent } from './ui/bottom-bar/bottom-bar.component';
@@ -71,7 +88,20 @@ library.add(faHeart, faMugHot,
         ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
-        MaterialModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        FlexLayoutModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatSortModule,
+        MatListModule,
+        MatGridListModule,
         FontAwesomeModule
     ],
     /* The providers array is where you list the services the app needs.
