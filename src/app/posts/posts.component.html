@@ -14,7 +14,7 @@
         <div class="view-mode" fxFlex fxLayoutAlign="end center" fxLayoutGap="15px">
             <i (click)="changeViewMode(viewModeEnum.List)"
                     [ngClass]="{'active-view' : currentView == viewModeEnum.List}">
-                <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+                <fa-icon [icon]="['fas', 'th-list']"></fa-icon>
             </i>
             <i (click)="changeViewMode(viewModeEnum.Grid)"
                [ngClass]="{'active-view' : currentView == viewModeEnum.Grid}">

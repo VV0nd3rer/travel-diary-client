@@ -24,7 +24,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMugHot, faHeart,
-         faTh, faBars,
+         faTh, faThList,
          faSignInAlt, faUserPlus,
          faPlaneDeparture, faMapMarked,
          faSearch} from '@fortawesome/free-solid-svg-icons';
@@ -56,7 +56,7 @@ import { MultimediaComponent } from './multimedia/multimedia.component';
 import { SightsComponent } from './sights/sights.component';
 
 library.add(faHeart, faMugHot,
-    faTh, faBars,
+    faTh, faThList,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
     faSearch);
