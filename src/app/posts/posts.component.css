@@ -2,8 +2,17 @@
     border-top: 2px solid #49aa3c;
     background: linear-gradient(45deg, rgb(228, 240, 121), rgb(142, 226, 93));
 }
+.search-data {
+    font-size: 16px;
+    line-height: 25px;
+    width: 200px;
+    border-radius: 4px;
+    outline: none;
+}
+.search-data::placeholder {
+    padding-left: 15px;
+}
 .search-button {
-    margin-left: 20px;
     background: none;
     border-radius: 100%;
 }
@@ -16,11 +25,8 @@
     transition: all 0.3s ease-out;
 }
 .search-form {
-    font-size: 14px;
+    font-size: 16px;
     padding: 20px 0;
-}
-.search-form input {
-    font-size: 20px;
 }
 .view-mode i {
     color: rgb(52, 207, 86);
