@@ -19,6 +19,8 @@ export class NavigationBarComponent implements OnInit {
   }
   ngOnInit() {}
 
+  activeLink: string = "";
+
   logout(): void {
     this.userService.logout().subscribe(
         res => {
