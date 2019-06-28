@@ -64,9 +64,12 @@
     height: 400px;
     word-wrap: break-word;
 }
-.card-item mat-card-content {
+.card-item .mat-card-content {
     height: 300px;
     overflow-y: auto;
+}
+.mat-card-content img {
+    width: 100%;
 }
 .card-item mat-card-actions {
     position: absolute;
