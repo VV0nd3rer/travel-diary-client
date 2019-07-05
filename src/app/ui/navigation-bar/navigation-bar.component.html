@@ -2,12 +2,12 @@
   <mat-toolbar>
     <div fxFlex fxLayout>
       <div class="navigation-item inspire-li">
-        <a routerLink="/sights" (click)="activeLink = 'sights'" [ngClass]="{'active-link' : activeLink == 'sights'}">Inspire me!</a>
+        <a routerLink="/sights" routerLinkActive="active-link">{{ 'NAVIGATION.SIGHTS' | translate}}</a>
       </div>
       <ul fxLayout class="navigation-items">        
-        <li><a routerLink="/posts" (click)="activeLink = 'posts'" [ngClass]="{'active-link' : activeLink == 'posts'}">Where to go</a></li>
-        <li><a routerLink="/books" (click)="activeLink = 'books'" [ngClass]="{'active-link' : activeLink == 'books'}">What to read</a></li>
-        <li><a routerLink="/multimedia" (click)="activeLink = 'multimedia'" [ngClass]="{'active-link' : activeLink == 'multimedia'}">What to watch/listen</a></li>
+        <li><a routerLink="/posts" routerLinkActive="active-link">{{ 'NAVIGATION.POSTS' | translate}}</a></li>
+        <li><a routerLink="/books" routerLinkActive="active-link">{{ 'NAVIGATION.BOOKS' | translate}}</a></li>
+        <li><a routerLink="/multimedia" routerLinkActive="active-link">What to watch/listen</a></li>
         <li></li>
       </ul>  
     </div>
@@ -26,10 +26,9 @@
           <a *ngIf="currentUser" routerLink="/" (click)="logout();activeLink = ''">Logout</a>
         </li>
       </ul>
-      <select name="lang" id="lang">
-        <option value="en">EN</option>
-        <option value="cz">CZ</option>
-        <option value="ru">RU</option>
+      <select id="lang" #langSelect (change)="translate.use(langSelect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                [selected]="lang === translate.currentLang">{{ lang }}</option>
       </select>
     </div>
   </mat-toolbar>

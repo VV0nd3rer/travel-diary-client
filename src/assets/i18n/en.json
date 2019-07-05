@@ -1,0 +1,17 @@
+{
+  "NAVIGATION": {
+    "POSTS": "Where to go",
+    "SIGHTS": "Inspire me!",
+    "BOOKS": "What to read"
+  },
+  "SEARCH": {
+    "AUTHOR": "Author",
+    "SIGHT": "Sight",
+    "TEXT": "In text"
+  },
+  "SORT": {
+    "NOT_SELECTED": "Sort",
+    "NEWEST": "Newest",
+    "OLDEST": "Oldest"
+  }
+}

@@ -2,7 +2,8 @@
 <div class="global-container">
     <div fxLayout="row wrap">
         <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
-            <input list="authors" class="search-data" name="author" spellcheck="false" placeholder="Author">
+            <input list="authors" class="search-data" name="author" spellcheck="false"
+                   placeholder="{{'SEARCH.AUTHOR' | translate}}">
             <datalist id="authors">
                 <option value="Jožin z Bažin">
                 <option value="Amber Valentine">
@@ -13,7 +14,8 @@
                 <option value="Ponchik de Buffet">
                 <option value="Rumpelstilzchen">
             </datalist>
-            <input list="sights" class="search-data" name="sight" spellcheck="false" placeholder="Sights">
+            <input list="sights" class="search-data" name="sight" spellcheck="false"
+                   placeholder="{{'SEARCH.SIGHT' | translate}}">
             <datalist id="sights">
                 <option value="Paris">
                 <option value="London">
@@ -22,10 +24,11 @@
                 <option value="Jídelna 'U trí švábů'">
                 <option value="Bažina">
             </datalist>
-            <input list="sorting" class="search-data" name="sorting" spellcheck="false" placeholder="Sorting">
+            <input list="sorting" class="search-data" name="sorting" spellcheck="false"
+                   placeholder="{{'SORT.NOT_SELECTED' | translate}}">
             <datalist id="sorting">
-                <option value="Sort1">
-                <option value="Sort2">
+                <option value="{{'SORT.NEWEST' | translate}}">
+                <option value="{{'SORT.OLDEST' | translate}}">
             </datalist>
             <mat-form-field class="search-form">
                 <input matInput autocomplete="off" spellcheck="false" placeholder="Search" type="text">

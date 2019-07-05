@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 /*The layout package provides utilities to build responsive UIs that react to screen-size changes.*/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -38,6 +39,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
+    HttpClient,
     HttpClientModule,
     HTTP_INTERCEPTORS
 } from '@angular/common/http';
@@ -60,6 +62,13 @@ library.add(faHeart, faMugHot,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
     faSearch);
+
+// AoT requires an exported function for factories
+// More: https://www.npmjs.com/package/@ngx-translate/core#aot
+export function HttpLoaderFactory(httpClient: HttpClient) {
+    return new TranslateHttpLoader(httpClient);
+}
+
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
  * Everything in a module is private unless export keyword is used.*/
@@ -93,6 +102,13 @@ library.add(faHeart, faMugHot,
         AppRoutingModule,
         HttpClientModule,
         CommonModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
