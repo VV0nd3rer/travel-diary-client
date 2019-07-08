@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     login():void {
-        //console.log(this.cookieService.get('XSRF-TOKEN'));
+
         this.userService.login(this.loginForm.value).subscribe(
             res => {
                 this.serviceResponse = res;

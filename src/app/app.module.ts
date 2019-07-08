@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { LOCAL_STORAGE } from 'ngx-webstorage-service';
+import { USER_SERVICE_STORAGE, UserService } from './service/user.service';
+
 /*The layout package provides utilities to build responsive UIs that react to screen-size changes.*/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -133,7 +137,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthenticationInterceptor,
             multi: true
-        }
+        },
+        UserService,
+        { provide: USER_SERVICE_STORAGE, useExisting: LOCAL_STORAGE }
+
     ],
     /* The providers array is where you list the services the app needs.
        When you list services here, they are available app-wide.
