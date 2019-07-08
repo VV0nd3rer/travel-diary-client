@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Title }     from '@angular/platform-browser';
 import { User } from '../../model/user';
 import { UserService } from '../../service/user.service';
 import {ServiceResponse} from "../../model/service-response";
@@ -13,10 +14,12 @@ import {ServiceResponse} from "../../model/service-response";
 export class NavigationBarComponent implements OnInit {
     currentUser:User;
     serviceResponse:ServiceResponse<User>;
-
+    ngOnInit() {}
     constructor(private userService:UserService,
                 private router:Router,
+                private titleService: Title,
                 public translate:TranslateService) {
+
         this.userService.loggedInUser.subscribe(x => this.currentUser = x);
 
         translate.addLangs(['en', 'ru']);
@@ -25,12 +28,21 @@ export class NavigationBarComponent implements OnInit {
         const browserLang = translate.getBrowserLang();
         translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
 
+        this.translate.onLangChange.subscribe(() => {
+            const translation = this.translate.instant('APP_TITLE');
+            this.setTitle(translation);
+        });
+
+
     }
 
-    ngOnInit() {
-    }
+
 
     activeLink:string = "";
+
+    public setTitle( newTitle: string) {
+        this.titleService.setTitle( newTitle );
+    }
 
     logout():void {
         this.userService.logout().subscribe(
