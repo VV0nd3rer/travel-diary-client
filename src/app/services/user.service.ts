@@ -23,14 +23,14 @@ export const USER_SERVICE_STORAGE =
 @Injectable()
 export class UserService {
     private loggedInUserSubject:BehaviorSubject<User>;
-    public loggedInUser:Observable<User>;
+    public loggedInUser$:Observable<User>;
 
     baseUrl = environment.baseUrl;
 
     constructor(private http:HttpClient,
                 @Inject(USER_SERVICE_STORAGE) private storage: StorageService) {
         this.loggedInUserSubject = new BehaviorSubject<User>(this.getUserFromStorage());
-        this.loggedInUser = this.loggedInUserSubject.asObservable();
+        this.loggedInUser$ = this.loggedInUserSubject.asObservable();
     }
 
     public setLoggedUser(loggedUser:User):void {

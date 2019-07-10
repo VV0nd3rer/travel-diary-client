@@ -20,7 +20,7 @@ export class NavigationBarComponent implements OnInit {
                 private titleService: Title,
                 public translate:TranslateService) {
 
-        this.userService.loggedInUser.subscribe(x => this.currentUser = x);
+        this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
 
         translate.addLangs(['en', 'ru']);
         translate.setDefaultLang('en');
