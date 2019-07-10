@@ -1,10 +1,10 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { PageEvent } from '@angular/material';
-import { PostsService } from "../service/posts.service";
+import { PostsService } from "../services/posts.service";
 import { Post } from "../model/post";
 import { Page } from "../model/page";
-import { DataViewMode } from "../service/view-mode";
+import { DataViewMode } from "../services/view-mode";
 
 @Component({
     selector: 'app-posts',

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title }     from '@angular/platform-browser';
 import { User } from '../../model/user';
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../services/user.service';
 import {ServiceResponse} from "../../model/service-response";
 
 @Component({

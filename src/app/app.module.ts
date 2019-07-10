@@ -5,7 +5,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { LOCAL_STORAGE } from 'ngx-webstorage-service';
-import { USER_SERVICE_STORAGE, UserService } from './service/user.service';
+import { USER_SERVICE_STORAGE, UserService } from './services/user.service';
 
 /*The layout package provides utilities to build responsive UIs that react to screen-size changes.*/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
