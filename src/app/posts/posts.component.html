@@ -1,77 +1,95 @@
 <div class="post-main-div" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
-<div class="global-container">
-    <div fxLayout="row wrap">
-        <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
-            <input list="authors" class="search-data" name="author" spellcheck="false"
-                   placeholder="{{'SEARCH.AUTHOR' | translate}}">
-            <datalist id="authors">
-                <option value="Jožin z Bažin">
-                <option value="Amber Valentine">
-                <option value="Bilbo Baggins">
-                <option value="Xu Xin">
-                <option value="Crazy Midnight Dancer">
-                <option value="Disco Superstar">
-                <option value="Ponchik de Buffet">
-                <option value="Rumpelstilzchen">
-            </datalist>
-            <input list="sights" class="search-data" name="sight" spellcheck="false"
-                   placeholder="{{'SEARCH.SIGHT' | translate}}">
-            <datalist id="sights">
-                <option value="Paris">
-                <option value="London">
-                <option value="New-York">
-                <option value="Podjezd #3">
-                <option value="Jídelna 'U trí švábů'">
-                <option value="Bažina">
-            </datalist>
-            <input list="sorting" class="search-data" name="sorting" spellcheck="false"
-                   placeholder="{{'SORT.NOT_SELECTED' | translate}}">
-            <datalist id="sorting">
-                <option value="{{'SORT.NEWEST' | translate}}">
-                <option value="{{'SORT.OLDEST' | translate}}">
-            </datalist>
-            <mat-form-field class="search-form">
-                <input matInput autocomplete="off" spellcheck="false" placeholder="Search" type="text">
-            </mat-form-field>
-            <button class="search-button" button="submit" mat-raised-button>
-                <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
-            </button>
-        </div>
+    <div class="global-container">
+        <div fxLayout="row wrap">
+            <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
+                <input list="authors" class="search-data" name="author" spellcheck="false"
+                       placeholder="{{'SEARCH.AUTHOR' | translate}}">
+                <datalist id="authors">
+                    <option value="Jožin z Bažin">
+                    <option value="Amber Valentine">
+                    <option value="Bilbo Baggins">
+                    <option value="Xu Xin">
+                    <option value="Crazy Midnight Dancer">
+                    <option value="Disco Superstar">
+                    <option value="Ponchik de Buffet">
+                    <option value="Rumpelstilzchen">
+                </datalist>
+                <input list="sights" class="search-data" name="sight" spellcheck="false"
+                       placeholder="{{'SEARCH.SIGHT' | translate}}">
+                <datalist id="sights">
+                    <option value="Paris">
+                    <option value="London">
+                    <option value="New-York">
+                    <option value="Podjezd #3">
+                    <option value="Jídelna 'U trí švábů'">
+                    <option value="Bažina">
+                </datalist>
+                <input list="sorting" class="search-data" name="sorting" spellcheck="false"
+                       placeholder="{{'SORT.NOT_SELECTED' | translate}}">
+                <datalist id="sorting">
+                    <option value="{{'SORT.NEWEST' | translate}}">
+                    <option value="{{'SORT.OLDEST' | translate}}">
+                </datalist>
+                <mat-form-field class="search-form">
+                    <input matInput autocomplete="off" spellcheck="false" placeholder="Search" type="text">
+                </mat-form-field>
+                <button class="search-button" button="submit" mat-raised-button>
+                    <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
+                </button>
+            </div>
 
-        <div class="view-mode" fxFlex fxLayoutAlign="end center" fxLayoutGap="15px">
-            <i (click)="changeViewMode(viewModeEnum.List)"
-                    [ngClass]="{'active-view' : currentView == viewModeEnum.List}">
-                <fa-icon [icon]="['fas', 'th-list']"></fa-icon>
-            </i>
-            <i (click)="changeViewMode(viewModeEnum.Grid)"
-               [ngClass]="{'active-view' : currentView == viewModeEnum.Grid}">
-                <fa-icon [icon]="['fas', 'th']"></fa-icon>
-            </i>
-        </div>
+            <div class="view-mode" fxFlex fxLayoutAlign="end center" fxLayoutGap="15px">
+                <i (click)="changeViewMode(viewModeEnum.List)"
+                   [ngClass]="{'active-view' : currentView == viewModeEnum.List}">
+                    <fa-icon [icon]="['fas', 'th-list']"></fa-icon>
+                </i>
+                <i (click)="changeViewMode(viewModeEnum.Grid)"
+                   [ngClass]="{'active-view' : currentView == viewModeEnum.Grid}">
+                    <fa-icon [icon]="['fas', 'th']"></fa-icon>
+                </i>
+            </div>
         </div>
         <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="page.content?.length">
             <div *ngFor="let post of page.content" class="card-container" [ngClass]="currentView">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                        <mat-card-subtitle fxLayoutGap="5px">
+                            <fa-icon [icon]="['fas', 'hiking']"></fa-icon>
+                            <span>{{post.author.username}}</span>
+                            <span class="dot-divider"></span>
+                            <fa-icon [icon]="['fas', 'calendar-alt']"></fa-icon>
+                            <span>{{post.updatedAt | date: 'dd/MM/yyyy'}}</span>
+                            <span class="dot-divider"></span>
+                            <fa-icon [icon]="['fas', 'archway']"></fa-icon>
+                            <span>{{post.sight.label}}</span>
+                            <span class="dot-divider"></span>
+                            <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+                            <span>{{post.comments.length}}</span>
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
                         <img
-                             *ngIf="post.previewImageUrl?.length"
-                             [src]="post.previewImageUrl">
+                                *ngIf="post.previewImageUrl?.length"
+                                [src]="post.previewImageUrl">
                         <div [innerHTML]="post.description"></div>
                     </mat-card-content>
-    
-                    <mat-card-actions fxLayout="row" fxLayoutAlign="end">
-                        <button mat-button>Read more</button>
+
+                    <mat-card-actions>
+
                         <button title="Wish to go there" mat-icon-button>
                             <fa-icon [icon]="['fas', 'plane-departure']" size="lg"></fa-icon>
                         </button>
                         <button title="Have visited this place" mat-icon-button>
                             <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
                         </button>
+                        <span fxFlex></span>
+                        <a mat-raised-button routerLink="/post/details">
+                            Read more
+                        </a>
+
                     </mat-card-actions>
-    
+
                 </mat-card>
             </div>
         </div> <!--card-deck-container -->
@@ -82,6 +100,6 @@
                     [pageSizeOptions]="[5, 12, 24]"
                     (page)="updatePage($event)">
             </mat-paginator>
-        </div>    
+        </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ import { SightsComponent } from "./sights/sights.component";
 import { PostsComponent } from "./posts/posts.component";
 import { BooksComponent } from "./books/books.component";
 import { MultimediaComponent } from "./multimedia/multimedia.component";
+import {PostDetailComponent} from "./post-detail/post-detail.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'sights', component: SightsComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'books', component: BooksComponent },
-  { path: 'multimedia', component: MultimediaComponent }
+  { path: 'multimedia', component: MultimediaComponent },
+  { path: 'post/details', component: PostDetailComponent }
 ];
 
 @NgModule({

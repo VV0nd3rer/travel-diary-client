@@ -61,8 +61,18 @@
     border: 1px solid #aa853c;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
     position: relative;
-    height: 400px;
     word-wrap: break-word;
+}
+.dot-divider::after {
+    content: '\2022';
+}
+.card-item a {
+    text-decoration: none;
+    color: black;
+    padding-top: 2px;
+}
+.card-item .mat-raised-button {
+    background-color: burlywood;
 }
 .card-item .mat-card-content {
     height: 300px;
@@ -71,11 +81,11 @@
 .mat-card-content img {
     width: 100%;
 }
-.card-item mat-card-actions {
+/*.card-item mat-card-actions {
     position: absolute;
     bottom: 10px;
     right: 16px;
-}
+}*/
 .card-item mat-card-actions button:hover {
     background: #af9f1457;
     color: white;
