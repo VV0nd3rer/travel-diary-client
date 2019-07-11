@@ -36,10 +36,6 @@ export class NavigationBarComponent implements OnInit {
 
     }
 
-
-
-    activeLink:string = "";
-
     public setTitle( newTitle: string) {
         this.titleService.setTitle( newTitle );
     }
