@@ -84,10 +84,9 @@
                             <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
                         </button>
                         <span fxFlex></span>
-                        <a mat-raised-button routerLink="/post/details">
+                        <a mat-raised-button routerLink="/post/details" [state]="{ postUrl: post.links[0].href }">
                             Read more
                         </a>
-
                     </mat-card-actions>
 
                 </mat-card>

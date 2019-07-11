@@ -28,4 +28,15 @@ export class PostsService {
                 })
             );
     }
+    getPostDetails(postUrl: string):Observable<any> {
+        return this.http.get(postUrl)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
 }
