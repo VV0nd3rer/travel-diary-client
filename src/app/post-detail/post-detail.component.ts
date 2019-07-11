@@ -9,7 +9,7 @@ import {PostsService} from "../services/posts.service";
   styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
-  postUrl: object;
+  postUrl: string;
   postDetails: Post = new Post();
 
   constructor(private postService: PostsService) {
