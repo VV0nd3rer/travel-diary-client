@@ -54,18 +54,24 @@
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
+                        <mat-card-subtitle fxLayout="column">
+                            <div fxLayoutGap="5px">
+                                <fa-icon [icon]="['fas', 'hiking']"></fa-icon>
+                                <span>{{post.author.username}}</span>
+                                <span class="dot-divider"></span>
+                                <fa-icon [icon]="['fas', 'calendar-alt']"></fa-icon>
+                                <span>{{post.updatedAt | date: 'dd/MM/yyyy'}}</span>
+                            </div>
+                            <div fxLayoutGap="5px">
+                                <fa-icon [icon]="['fas', 'archway']"></fa-icon>
+                                <span>{{post.sight.label}}</span>
+                                <span class="dot-divider"></span>
+                                <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+                                <span>{{post.comments.length}}</span>
+                            </div>
+                        </mat-card-subtitle>
                         <mat-card-subtitle fxLayoutGap="5px">
-                            <fa-icon [icon]="['fas', 'hiking']"></fa-icon>
-                            <span>{{post.author.username}}</span>
-                            <span class="dot-divider"></span>
-                            <fa-icon [icon]="['fas', 'calendar-alt']"></fa-icon>
-                            <span>{{post.updatedAt | date: 'dd/MM/yyyy'}}</span>
-                            <span class="dot-divider"></span>
-                            <fa-icon [icon]="['fas', 'archway']"></fa-icon>
-                            <span>{{post.sight.label}}</span>
-                            <span class="dot-divider"></span>
-                            <fa-icon [icon]="['fas', 'comments']"></fa-icon>
-                            <span>{{post.comments.length}}</span>
+
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
@@ -75,20 +81,19 @@
                         <div [innerHTML]="post.description"></div>
                     </mat-card-content>
 
-                    <mat-card-actions>
-
-                        <button title="Wish to go there" mat-icon-button>
-                            <fa-icon [icon]="['fas', 'plane-departure']" size="lg"></fa-icon>
-                        </button>
-                        <button title="Have visited this place" mat-icon-button>
-                            <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
-                        </button>
-                        <span fxFlex></span>
+                    <mat-card-actions fxLayoutAlign="space-between">
+                        <div>
+                            <button title="Wish to go there" mat-icon-button>
+                                <fa-icon [icon]="['fas', 'plane-departure']" size="lg"></fa-icon>
+                            </button>
+                            <button title="Have visited this place" mat-icon-button>
+                                <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
+                            </button>
+                        </div>
                         <a mat-raised-button routerLink="/post/details" [state]="{ postUrl: post.links[0].href }">
                             Read more
                         </a>
                     </mat-card-actions>
-
                 </mat-card>
             </div>
         </div> <!--card-deck-container -->
