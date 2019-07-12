@@ -25,9 +25,8 @@ mat-toolbar ul li div {
   padding: 0;
   margin: 0;
 }
-.inspire-li {
+.logo {
   font-size: 27px;
-  margin-right: 100px;
 }
 .active-link {
   color: rgb(243, 197, 113) !important;

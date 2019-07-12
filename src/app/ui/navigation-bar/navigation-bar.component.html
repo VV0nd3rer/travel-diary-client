@@ -1,18 +1,26 @@
-<div class="header">
+<div class="header" fxFlex fxLayout>
   <mat-toolbar>
+    <!-- Logo & navigation -->
     <div fxFlex fxLayout>
-      <div class="navigation-item inspire-li">
+      <div class="navigation-item logo">
         <a routerLink="/sights" routerLinkActive="active-link">{{ 'NAVIGATION.SIGHTS' | translate}}</a>
       </div>
-      <ul fxLayout class="navigation-items">        
+
+      <ul fxLayout class="navigation-items" fxHide.lt-md>
         <li><a routerLink="/posts" routerLinkActive="active-link">{{ 'NAVIGATION.POSTS' | translate}}</a></li>
         <li><a routerLink="/books" routerLinkActive="active-link">{{ 'NAVIGATION.BOOKS' | translate}}</a></li>
         <li><a routerLink="/multimedia" routerLinkActive="active-link">What to watch/listen</a></li>
-        <li></li>
-      </ul>  
+      </ul>
+      <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>Nav menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+
     </div>
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-      <ul fxLayout class="navigation-items">
+    <!-- User menu -->
+    <div fxFlex fxLayout fxLayoutAlign="end">
+      <ul fxLayout class="navigation-items" fxHide.lt-md>
         <li>
           <a *ngIf="!currentUser" routerLink="/login" (click)="activeLink = 'login'" [ngClass]="{'active-link' : activeLink == 'login'}">Login</a>
         </li>
@@ -26,6 +34,15 @@
           <a *ngIf="currentUser" routerLink="/" (click)="logout();activeLink = ''">Logout</a>
         </li>
       </ul>
+
+      <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>
+        <fa-icon [icon]="['fas', 'sign-in-alt']" size="2x"></fa-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+
       <select id="lang" #langSelect (change)="translate.use(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang"
                 [selected]="lang === translate.currentLang">{{ lang }}</option>

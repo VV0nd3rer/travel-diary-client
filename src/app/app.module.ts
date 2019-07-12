@@ -22,7 +22,8 @@ import {
     MatTableModule,
     MatSortModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatMenuModule
 } from '@angular/material';
 
 
@@ -131,7 +132,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         MatSortModule,
         MatListModule,
         MatGridListModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        MatMenuModule
     ],
     /* The providers array is where you list the services the app needs.
        When you list services here, they are available app-wide.
