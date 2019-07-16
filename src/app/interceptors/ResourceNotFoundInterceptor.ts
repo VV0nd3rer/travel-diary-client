@@ -10,23 +10,17 @@ import {
     HttpResponse,
     HttpErrorResponse
 } from "@angular/common/http";
+import { Router } from "@angular/router";
 import { Observable, throwError, of } from "rxjs";
-import { CookieService } from 'ngx-cookie-service';
-import { UserService } from '../services/user.service';
 
 @Injectable()
-export class AuthenticationInterceptor implements HttpInterceptor {
+export class ResourceNotFoundInterceptor implements HttpInterceptor {
 
-    constructor(private cookieService:CookieService,
-                private userService:UserService) {
+    constructor(private router: Router) {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
-        const clonedRequest =
-            request.clone(
-                {withCredentials: true}
-            );
-        return next.handle(clonedRequest)
+        return next.handle(request)
             .pipe(
                 map((event:HttpEvent<any>) => {
                     if (event instanceof HttpResponse) {
@@ -36,8 +30,8 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                 }),
                 catchError(error => {
                     console.log("Error response status: ", error.status);
-                    if (error.status === 401) {
-                        this.userService.setLoggedUser(null);
+                    if(error.status === 404) {
+                        this.router.navigateByUrl('/not-found');
                     }
                     return throwError(error);
                 }));

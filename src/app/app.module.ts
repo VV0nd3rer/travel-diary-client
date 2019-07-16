@@ -61,6 +61,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PostsComponent } from './posts/posts.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationInterceptor } from './interceptors/AuthenticationInterceptor';
+import { ResourceNotFoundInterceptor } from './interceptors/ResourceNotFoundInterceptor';
 import { BooksComponent } from './books/books.component';
 import { MultimediaComponent } from './multimedia/multimedia.component';
 import { SightsComponent } from './sights/sights.component';
@@ -148,6 +149,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthenticationInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ResourceNotFoundInterceptor,
             multi: true
         },
         UserService,
