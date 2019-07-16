@@ -1,6 +1,6 @@
 ## Angular client for java web application 'Travel diary'
 ### Used technologies:
-* Angular 7.x
+* Angular 8.x
 * Angular Material 7.x
 * Node.js 10.x
 
