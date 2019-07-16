@@ -1,0 +1,15 @@
+img {
+    width: 60%;
+}
+.container {
+    position: relative;
+    text-align: center;
+}
+.content {
+    color: white;
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    font-size: 16pt;
+    transform: translate(-50%, -50%);
+}

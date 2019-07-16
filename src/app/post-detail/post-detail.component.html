@@ -1,2 +1,39 @@
-<h3>{{postDetails.title}}</h3>
-<p>{{postDetails.text}}</p>
+<div class="container" fxFlex fxLayout="row" fxLayoutAlign="center">
+    <div class="container-navigation" fxFlex="15%" fxLayout="column"
+         fxLayoutAlign="start center">
+        <div class="vertical-icon-panel">
+        <button title="Wish to go there" mat-icon-button>
+            <fa-icon [icon]="['fas', 'plane-departure']" size="lg"></fa-icon>
+        </button>
+        <button title="Have visited this place" mat-icon-button>
+            <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
+        </button>
+        </div>
+        <div class="vertical-icon-panel">
+        <button mat-button [matMenuTriggerFor]="menu">
+            <fa-icon [icon]="['fas', 'cogs']" size="lg"></fa-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon>
+                Edit
+            </button>
+            <button mat-menu-item>
+                <fa-icon [icon]="['fas', 'trash-alt']" size="lg"></fa-icon>
+                Remove
+            </button>
+        </mat-menu>
+            </div>
+        <div class="vertical-icon-panel">
+        <button mat-icon-button (click)="goBack()">
+            <fa-icon [icon]="['fas', 'arrow-circle-left']" size="lg"></fa-icon>
+        </button>
+            </div>
+    </div>
+    <div class="content" fxFlex="75%">
+        <h3>{{post.title}}</h3>
+        <div>{{post.author.username}}</div>
+        <div>{{post.updatedAt | date: 'dd/MM/yyyy'}}</div>
+        <div [innerHTML]="post.text"></div>
+    </div>
+</div>

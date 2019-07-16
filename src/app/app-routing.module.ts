@@ -8,9 +8,11 @@ import { PostsComponent } from "./posts/posts.component";
 import { BooksComponent } from "./books/books.component";
 import { MultimediaComponent } from "./multimedia/multimedia.component";
 import {PostDetailComponent} from "./post-detail/post-detail.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'not-found', component: NotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
@@ -18,7 +20,7 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'multimedia', component: MultimediaComponent },
-  { path: 'post/details', component: PostDetailComponent }
+  { path: 'post/:id', component: PostDetailComponent }
 ];
 
 @NgModule({

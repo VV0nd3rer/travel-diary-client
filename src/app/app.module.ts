@@ -34,7 +34,9 @@ import { faMugHot, faHeart,
          faSignInAlt, faUserPlus,
          faPlaneDeparture, faMapMarked,
          faSearch,
-         faHiking, faCalendarAlt, faArchway, faComments } from '@fortawesome/free-solid-svg-icons';
+         faHiking, faCalendarAlt, faArchway, faComments,
+         faCogs, faEdit, faTrashAlt, faArrowCircleLeft
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
     FormsModule,
@@ -63,13 +65,15 @@ import { BooksComponent } from './books/books.component';
 import { MultimediaComponent } from './multimedia/multimedia.component';
 import { SightsComponent } from './sights/sights.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
     faSearch,
-    faHiking, faCalendarAlt, faArchway, faComments
+    faHiking, faCalendarAlt, faArchway, faComments,
+    faCogs, faEdit, faTrashAlt, faArrowCircleLeft
 );
 
 // AoT requires an exported function for factories
@@ -101,7 +105,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         BooksComponent,
         MultimediaComponent,
         SightsComponent,
-        PostDetailComponent
+        PostDetailComponent,
+        NotFoundComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
        this particular module needs to function properly.*/

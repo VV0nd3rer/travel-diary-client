@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { map, catchError } from "rxjs/operators";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
+    HttpClient,
+    HttpHeaders,
     HttpRequest,
     HttpHandler,
     HttpEvent,
@@ -9,6 +10,7 @@ import {
     HttpResponse,
     HttpErrorResponse
 } from "@angular/common/http";
+import { Router } from "@angular/router";
 import { Observable, throwError, of } from "rxjs";
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../services/user.service';
@@ -16,7 +18,9 @@ import { UserService } from '../services/user.service';
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
-    constructor(private cookieService:CookieService, private userService:UserService) {
+    constructor(private router: Router,
+                private cookieService:CookieService,
+                private userService:UserService) {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
@@ -36,7 +40,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                     console.log("Error response status: ", error.status);
                     if (error.status === 401) {
                         this.userService.setLoggedUser(null);
+                    } else if(error.status === 404) {
+                        this.router.navigateByUrl('/not-found');
                     }
+
                     //return of([]);
                     return throwError(error);
                 }));

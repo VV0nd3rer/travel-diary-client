@@ -15,8 +15,8 @@ export class PostsService {
     constructor(private http:HttpClient) {
     }
 
-    getPostsPage(requestParams?: any):Observable<any> {
-        return this.http.get(this.endpoint, { params: requestParams})
+    getPostsPage(requestParams?:any):Observable<any> {
+        return this.http.get(this.endpoint, {params: requestParams})
             .pipe(
                 tap(val => console.log(`Calling getAllPosts method. The response: ${val}`)),
                 map(res => {
@@ -28,8 +28,9 @@ export class PostsService {
                 })
             );
     }
-    getPostDetails(postUrl: string):Observable<any> {
-        return this.http.get(postUrl)
+
+    getPostDetails(id:number):Observable<any> {
+        return this.http.get(this.endpoint + "/" + id)
             .pipe(
                 map(res => {
                     return res;

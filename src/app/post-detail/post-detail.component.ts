@@ -1,30 +1,40 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Post } from "../model/post";
 import { Observable } from "rxjs/index";
 import {PostsService} from "../services/posts.service";
 
 @Component({
-  selector: 'app-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+    selector: 'app-post-detail',
+    templateUrl: './post-detail.component.html',
+    styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
-  postUrl: string;
-  postDetails: Post = new Post();
+    postUrl:string;
+    post:Post = new Post();
 
-  constructor(private postService: PostsService) {
-  }
+    constructor(private route:ActivatedRoute,
+                private location: Location,
+                private postService:PostsService) {
+    }
 
-  ngOnInit() {
-    this.postUrl = history.state.postUrl;
-    this.getPost();
-  }
-  getPost(): void {
-    this.postService.getPostDetails(this.postUrl).subscribe(
-        data => {
-          this.postDetails = data;
-        }
-    )
-  }
+    ngOnInit() {
+        this.getPost();
 
+    }
+
+    getPost():void {
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.postService.getPostDetails(id).subscribe(
+            data => {
+                this.post = data;
+                console.log("Post: " + JSON.stringify(this.post));
+            },
+            err => console.log("Get post Error...")
+        )
+    }
+    goBack(): void {
+        this.location.back();
+    }
 }
