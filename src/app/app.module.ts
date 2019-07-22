@@ -26,7 +26,6 @@ import {
     MatMenuModule
 } from '@angular/material';
 
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMugHot, faHeart,
@@ -43,6 +42,10 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +70,7 @@ import { MultimediaComponent } from './multimedia/multimedia.component';
 import { SightsComponent } from './sights/sights.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SavePostComponent } from './save-post/save-post.component';
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
@@ -107,7 +111,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         MultimediaComponent,
         SightsComponent,
         PostDetailComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        SavePostComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
        this particular module needs to function properly.*/
@@ -125,6 +130,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        EditorModule,
+        CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'travel-diary', upload_preset: 'nw4fh32r' }),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,

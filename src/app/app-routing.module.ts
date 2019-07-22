@@ -9,6 +9,7 @@ import { BooksComponent } from "./books/books.component";
 import { MultimediaComponent } from "./multimedia/multimedia.component";
 import {PostDetailComponent} from "./post-detail/post-detail.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {SavePostComponent} from "./save-post/save-post.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'multimedia', component: MultimediaComponent },
-  { path: 'post/:id', component: PostDetailComponent }
+  { path: 'post/:id', component: PostDetailComponent },
+  { path: 'save-post', component: SavePostComponent }
 ];
 
 @NgModule({
