@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Observer, of } from 'rxjs';
-import { Cloudinary } from '@cloudinary/angular-5.x';
+import {PostsService} from "../services/posts.service";
 
 @Component({
   selector: 'app-save-post',
@@ -8,37 +7,16 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
   styleUrls: ['./save-post.component.css']
 })
 export class SavePostComponent implements OnInit {
-  constructor(private cloudinary: Cloudinary) { }
+  constructor(private postService: PostsService) { }
 
   ngOnInit() {
 
   }
   getInitData() {
-    var cloudinaryUrl = `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`;
-    var uploadPreset = this.cloudinary.config().upload_preset;
+    var service = this.postService;
     return {
       images_upload_handler: function(blobInfo, success, failure) {
-        var xhr, formData;
-        xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-        xhr.open('POST', cloudinaryUrl);
-        xhr.onload = function() {
-          var json;
-          if (xhr.status != 200) {
-            failure('HTTP Error: ' + xhr.status);
-            return;
-          }
-          json = JSON.parse(xhr.responseText);
-          if (!json || typeof json.url != 'string') {
-            failure('Invalid JSON: ' + xhr.responseText);
-            return;
-          }
-          success(json.url);
-        };
-        formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
-        formData.append("upload_preset", uploadPreset);
-        xhr.send(formData);
+        service.uploadImage(blobInfo, success, failure);
       }
     }
   }
