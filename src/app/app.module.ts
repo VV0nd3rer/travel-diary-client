@@ -34,7 +34,7 @@ import { faMugHot, faHeart,
          faPlaneDeparture, faMapMarked,
          faSearch,
          faHiking, faCalendarAlt, faArchway, faComments,
-         faCogs, faEdit, faTrashAlt, faArrowCircleLeft
+         faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -78,7 +78,7 @@ library.add(faHeart, faMugHot,
     faPlaneDeparture, faMapMarked,
     faSearch,
     faHiking, faCalendarAlt, faArchway, faComments,
-    faCogs, faEdit, faTrashAlt, faArrowCircleLeft
+    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
 );
 
 // AoT requires an exported function for factories

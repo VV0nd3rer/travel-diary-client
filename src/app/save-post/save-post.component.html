@@ -1,2 +1,23 @@
-<editor apiKey="lk4x1sy9vlt5l5pld7wtxgem69i1gf0iokw9sb3gxj43aue1" [init]="getInitData()" plugins="image code"></editor>
+<div class="container" fxFlex fxLayout="row" fxLayoutAlign="center">
+    <div class="container-navigation" fxFlex="15%" fxLayout="column"
+         fxLayoutAlign="start center">
+        <div class="vertical-icon-panel">
+            <button mat-menu-item>
+                <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
+            </button>
+        </div>
+    </div>
+    <div class="content" fxFlex="75%">
+
+        <h4>Post preview</h4>
+        <input type="file">
+        <h4>Post description</h4>
+        <textarea></textarea>
+        <h4>Impressions</h4>
+        <editor apiKey="lk4x1sy9vlt5l5pld7wtxgem69i1gf0iokw9sb3gxj43aue1" [init]="getInitData()"
+            plugins="image"></editor>
+
+    </div>
+</div>
+
 
