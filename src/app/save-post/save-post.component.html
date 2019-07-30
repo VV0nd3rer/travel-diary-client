@@ -28,18 +28,25 @@
                  https://github.com/tinymce/tinymce-angular/issues/21
             -->
             <div class="text">
-                <editor #input2 minlength="40" formControlName="text"
+                <editor minlength="40" formControlName="text"
                         apiKey="lk4x1sy9vlt5l5pld7wtxgem69i1gf0iokw9sb3gxj43aue1"
                         [init]="getInitData()"
-                        plugins="image"></editor>
+                        plugins="print preview fullpage searchreplace autolink
+                        directionality visualblocks visualchars fullscreen
+                        image link media template table charmap hr
+                        pagebreak nonbreaking anchor toc insertdatetime advlist
+                        lists wordcount imagetools textpattern help autoresize"
+                        toolbar="formatselect | bold italic strikethrough forecolor
+                        backcolor permanentpen formatpainter | link image media pageembed |
+                        alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent |
+                        removeformat">
+
+                </editor>
                 <mat-error *ngIf="savePostForm.controls.text.hasError('required') &&
                   savePostForm.controls.text.touched">
                     Please enter text
                 </mat-error>
-                <mat-error *ngIf="savePostForm.controls.text.hasError('minlength') &&
-                  savePostForm.controls.text.touched">
-                    Text must be at least 40 characters long.
-                </mat-error>
+
             </div>
         </form>
     </div>

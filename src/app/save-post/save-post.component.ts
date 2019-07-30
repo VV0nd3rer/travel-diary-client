@@ -13,8 +13,8 @@ export class SavePostComponent implements OnInit {
     constructor(private postService:PostsService,
                 private formBuilder:FormBuilder) {
         this.savePostForm = this.formBuilder.group({
-            'description': ['', [Validators.required, Validators.minLength(10)]],
-            'text': ['', [Validators.required, Validators.minLength(40)]]
+            'description': ['', [ Validators.required, Validators.minLength(10) ]],
+            'text': ['', [ Validators.required ]]
         });
     }
 
