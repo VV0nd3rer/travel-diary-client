@@ -46,6 +46,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
+import cloudinaryConfiguration from '../cloudinary.config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -131,7 +132,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             }
         }),
         EditorModule,
-        CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'travel-diary', upload_preset: 'nw4fh32r' }),
+        CloudinaryModule.forRoot(Cloudinary, cloudinaryConfiguration),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
