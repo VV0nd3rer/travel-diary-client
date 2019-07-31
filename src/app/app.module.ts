@@ -48,6 +48,8 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 import cloudinaryConfiguration from '../cloudinary.config';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
@@ -133,6 +135,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }),
         EditorModule,
         CloudinaryModule.forRoot(Cloudinary, cloudinaryConfiguration),
+        LeafletModule.forRoot(),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
