@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, LatLng, tileLayer, Layer, marker, icon } from 'leaflet';
+import { Sight } from './../model/sight';
+import { SightsService } from "../services/sights.service";
 
 @Component({
     selector: 'app-sights',
@@ -7,12 +9,7 @@ import { latLng, LatLng, tileLayer, Layer, marker, icon } from 'leaflet';
     styleUrls: ['./sights.component.css']
 })
 export class SightsComponent implements OnInit {
-    sights: any = [
-        [-40.99497, 174.50808],
-        [-41.30269, 173.63696],
-        [-41.49413, 173.5421],
-        [-40.98585, 174.50659]
-    ];
+    sights: Sight[] = [];
     markers:Layer[] = [];
 
     options = {
@@ -29,23 +26,33 @@ export class SightsComponent implements OnInit {
                 } as any)
         ],
         zoom: 9,
-        center: [-41.49413, 173.5421]
+        center: [48.499998, 23.3833318]
     };
 
 
-    constructor() {
+    constructor(private sightService:SightsService) {
 
     }
 
     ngOnInit() {
-        this.addMarker();
+        this.getSights();
     }
 
-    addMarker() {
-        for (let m of this.sights) {
+    getSights() {
+        this.sightService.getSights().subscribe(
+            data => {
+                this.setMarkers(data._embedded.sightsListResourceList);
+            }
+        )
+
+    }
+    setMarkers(sights: any) {
+        console.log(sights);
+        for (let m of sights) {
+            console.log("Markers!");
             console.log(m);
             const newMarker = marker(
-                m, {
+                [m.mapCoordLat, m.mapCoordLong], {
                     icon: icon({
                         iconSize: [25, 41],
                         iconAnchor: [13, 41],
