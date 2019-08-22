@@ -53,7 +53,7 @@ export class SightsComponent implements OnInit {
                 [place.mapCoordLat, place.mapCoordLong], {
                     icon: icon({
                         iconSize: [25, 41],
-                        iconAnchor: [13, 41],
+                        iconAnchor: [13, 29],
                         iconUrl: 'assets/marker-icon.png',
                         shadowUrl: 'assets/marker-shadow.png'
                     })
