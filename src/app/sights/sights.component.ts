@@ -48,11 +48,9 @@ export class SightsComponent implements OnInit {
     }
     setMarkers(sights: any) {
         console.log(sights);
-        for (let m of sights) {
-            console.log("Markers!");
-            console.log(m);
+        for (let place of sights) {
             const newMarker = marker(
-                [m.mapCoordLat, m.mapCoordLong], {
+                [place.mapCoordLat, place.mapCoordLong], {
                     icon: icon({
                         iconSize: [25, 41],
                         iconAnchor: [13, 41],
@@ -60,6 +58,7 @@ export class SightsComponent implements OnInit {
                         shadowUrl: 'assets/marker-shadow.png'
                     })
                 })
+            newMarker.bindPopup(place.label).openPopup();
             this.markers.push(newMarker);
         }
     }
