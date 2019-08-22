@@ -5,6 +5,7 @@ import { PostsService } from "../services/posts.service";
 import { Post } from "../model/post";
 import { Page } from "../model/page";
 import { DataViewMode } from "../services/view-mode";
+import {Content} from "../model/content";
 
 @Component({
     selector: 'app-posts',
@@ -12,7 +13,8 @@ import { DataViewMode } from "../services/view-mode";
     styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-    page:Page <Post[]> = new Page();
+    page:Page = new Page();
+    content:Content<Post> = new Content();
     viewModeEnum = DataViewMode;
     currentView:DataViewMode = this.viewModeEnum.Grid;
 
@@ -40,7 +42,8 @@ export class PostsComponent implements OnInit {
         }
         this.postService.getPostsPage(this.requestParams).subscribe(
             data => {
-                this.page = data;
+                this.content = data._embedded.posts;
+                this.page = data.page;
             }
         )
     }

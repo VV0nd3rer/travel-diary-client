@@ -49,8 +49,8 @@
                 </i>
             </div>
         </div>
-        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="page.resources.content?.length">
-            <div *ngFor="let post of page.resources.content" class="card-container" [ngClass]="currentView">
+        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="content?.length">
+            <div *ngFor="let post of content" class="card-container" [ngClass]="currentView">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
@@ -97,7 +97,7 @@
                 </mat-card>
             </div>
         </div> <!--card-deck-container -->
-        <div fxLayout="row" fxLayoutAlign="center" *ngIf="page.content?.length">
+        <div fxLayout="row" fxLayoutAlign="center" *ngIf="content?.length">
             <mat-paginator
                     [length]="page.totalElements"
                     [pageSize]="page.pageSize"
