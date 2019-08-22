@@ -40,17 +40,11 @@ export class PostsComponent implements OnInit {
         }
         this.postService.getPostsPage(this.requestParams).subscribe(
             data => {
-                this.parsePaginationResponse(data);
+                this.page = data;
             }
         )
     }
 
-    private parsePaginationResponse(data:any) {
-        this.page.content = data.resources.content;
-        this.page.totalPages = data.totalPages;
-        this.page.totalElements = data.totalElements;
-        this.page.currentPage = data.currentPage;
-        this.page.pageSize = data.pageSize;
-    }
+
 }
 

@@ -1,6 +1,6 @@
+import {Resources} from "./resources";
 export class Page <T> {
-    public content: T;
-    public links: any;
+    public resources: Resources<T>
     public totalPages: any;
     public totalElements: any;
     public currentPage: any;
