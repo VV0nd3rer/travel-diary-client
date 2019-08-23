@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode  } from '@angular/core';
 import { latLng, LatLng, tileLayer, Layer, marker, icon } from 'leaflet';
 import { Sight } from './../model/sight';
 import { SightsService } from "../services/sights.service";
@@ -11,6 +11,7 @@ import { SightsService } from "../services/sights.service";
 export class SightsComponent implements OnInit {
     sights: Sight[] = [];
     markers:Layer[] = [];
+    isDevMode:boolean;
 
     options = {
         name: 'Mapbox',
@@ -25,23 +26,26 @@ export class SightsComponent implements OnInit {
                     accessToken: 'pk.eyJ1Ijoia3ZlcmNoaSIsImEiOiJjanlyd2NncnMwOTdtM2NwNThuMHVreGpzIn0.GiLeL75YtFDxkEvvBOw5lQ'
                 } as any)
         ],
-        zoom: 9,
-        center: [48.499998, 23.3833318]
+
     };
 
+    zoom = 6;
+
+    center = new LatLng(47.103035, 18.773455);
 
     constructor(private sightService:SightsService) {
 
     }
 
     ngOnInit() {
+        this.isDevMode = isDevMode();
         this.getSights();
     }
 
     getSights() {
         this.sightService.getSights().subscribe(
             data => {
-                this.setMarkers(data._embedded.sightsListResourceList);
+                this.setMarkers(data._embedded.sights);
             }
         )
 
