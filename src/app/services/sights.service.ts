@@ -5,23 +5,37 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SightsService {
-  baseUrl = environment.baseUrl;
-  endpoint = this.baseUrl + "/sights";
+    baseUrl = environment.baseUrl;
+    endpoint = this.baseUrl + "/sights";
 
-      constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient) {
+    }
 
-  getSights():Observable<any> {
-    return this.http.get(this.endpoint)
-        .pipe(
-            map(res => {
-              return res;
-            }),
-            catchError((error:any) => {
-              return of(error);
-            })
-        );
-  }
+    getSights():Observable<any> {
+        return this.http.get(this.endpoint + "/all")
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
+
+    getSightsPage(requestParams?:any):Observable<any> {
+        return this.http.get(this.endpoint, {params: requestParams})
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
+
 }
