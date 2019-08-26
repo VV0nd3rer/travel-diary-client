@@ -1,7 +1,8 @@
 export class Sight {
-    public id:number;
+    public sightId:number;
     public label:string;
+    public description:string;
     public mapCoordLat:number;
-    public mapCoodLong:number;
+    public mapCoordLong:number;
 
 }

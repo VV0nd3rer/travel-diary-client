@@ -10,7 +10,7 @@ import { SightsService } from "../../services/sights.service";
 })
 export class MapComponent implements OnInit {
 
-  sights: Sight[] = [];
+  //sights: Sight[] = [];
   markers:Layer[] = [];
   isDevMode:boolean;
 
