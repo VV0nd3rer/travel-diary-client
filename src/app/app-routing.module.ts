@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from "./logout/logout.component";
 import { RegistrationComponent } from "./registration/registration.component";
-import { SightsComponent } from "./sights/sights.component";
 import { PostsComponent } from "./posts/posts.component";
 import { BooksComponent } from "./books/books.component";
 import { MultimediaComponent } from "./multimedia/multimedia.component";
@@ -12,12 +11,12 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 import {SavePostComponent} from "./save-post/save-post.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'sights', component: SightsComponent },
+  { path: 'sights', loadChildren: () => import(`./sights/sights.module`).then(m => m.SightsModule) },
   { path: 'posts', component: PostsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'multimedia', component: MultimediaComponent },

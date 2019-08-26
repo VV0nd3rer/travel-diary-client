@@ -48,8 +48,6 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 import cloudinaryConfiguration from '../cloudinary.config';
 
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
@@ -70,7 +68,6 @@ import { AuthenticationInterceptor } from './interceptors/AuthenticationIntercep
 import { ResourceNotFoundInterceptor } from './interceptors/ResourceNotFoundInterceptor';
 import { BooksComponent } from './books/books.component';
 import { MultimediaComponent } from './multimedia/multimedia.component';
-import { SightsComponent } from './sights/sights.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SavePostComponent } from './save-post/save-post.component';
@@ -112,7 +109,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         PostsComponent,
         BooksComponent,
         MultimediaComponent,
-        SightsComponent,
         PostDetailComponent,
         NotFoundComponent,
         SavePostComponent
@@ -135,7 +131,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }),
         EditorModule,
         CloudinaryModule.forRoot(Cloudinary, cloudinaryConfiguration),
-        LeafletModule.forRoot(),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
