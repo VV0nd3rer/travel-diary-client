@@ -1,14 +1,9 @@
 <div fxFlex fxLayout="row wrap" fxLayoutAlign="center">
     <div *ngIf="isDevMode" fxFlex="18%">
-        <p>Zoom: {{zoom}}</p>
-        <p>{{center}}</p>
+        <p>Zoom: {{map.getZoom()}}</p>
+        <p>{{map.getCenter()}}</p>
     </div>
-    <div class="content" fxFlex="1 1 75%"
-         leaflet
-         [leafletOptions]="options"
-         [leafletLayers]="markers"
-         [(leafletZoom)]="zoom"
-         [(leafletCenter)]="center">
+    <div id="map"  fxFlex="1 1 75%">
 
     </div>
 </div>

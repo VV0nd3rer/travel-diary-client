@@ -3,3 +3,9 @@
     height: 800px;
     flex: 1;
 }
+#map {
+    height: 800px;
+}
+form {
+    width: 100%;
+}

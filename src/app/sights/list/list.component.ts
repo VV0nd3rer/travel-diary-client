@@ -89,7 +89,7 @@ export class ListComponent implements OnInit {
         this.requestParameters[this.requestParam.Sorting] = criteria;
     }
 
-    private setPaginationRequestParam(page: int, size: int) {
+    private setPaginationRequestParam(page: number, size: number) {
         this.requestParameters[this.requestParam.Page] = page;
         this.requestParameters[this.requestParam.Size] = size;
     }
