@@ -49,8 +49,8 @@
                 </i>
             </div>
         </div>
-        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="content?.length">
-            <div *ngFor="let post of content" class="card-container" [ngClass]="currentView">
+        <div fxLayout="row wrap" fxLayoutAlign="center" class="card-deck-container" *ngIf="posts?.length">
+            <div *ngFor="let post of posts" class="card-container" [ngClass]="currentView">
                 <mat-card class="card-item">
                     <mat-card-header>
                         <mat-card-title class="mat-card-title">{{post.title}}</mat-card-title>
@@ -67,7 +67,7 @@
                                 <span>{{post.sight.label}}</span>
                                 <span class="dot-divider"></span>
                                 <fa-icon [icon]="['fas', 'comments']"></fa-icon>
-                                <span>{{post.comments.length}}</span>
+                                <span>0</span>
                             </div>
                         </mat-card-subtitle>
                         <mat-card-subtitle fxLayoutGap="5px">
@@ -97,7 +97,7 @@
                 </mat-card>
             </div>
         </div> <!--card-deck-container -->
-        <div fxLayout="row" fxLayoutAlign="center" *ngIf="content?.length">
+        <div fxLayout="row" fxLayoutAlign="center" *ngIf="posts?.length">
             <mat-paginator
                     [length]="page.totalElements"
                     [pageSize]="page.pageSize"

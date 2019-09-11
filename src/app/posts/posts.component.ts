@@ -14,7 +14,7 @@ import {Content} from "../model/content";
 })
 export class PostsComponent implements OnInit {
     page:Page = new Page();
-    content:Content<Post> = new Content();
+    posts: Post[] = [];
     viewModeEnum = DataViewMode;
     currentView:DataViewMode = this.viewModeEnum.Grid;
 
@@ -23,7 +23,7 @@ export class PostsComponent implements OnInit {
     // https://medium.com/front-end-weekly/es6-map-vs-object-what-and-when-b80621932373
 
     //An object which stores HTTP GET request parameters for getting posts
-    //Example of request: <base-url>/posts?author=33&current_page=1
+    //Example of request: <base-url>/posts?author=33&page=1
     requestParams = {};
 
     ngOnInit() {
@@ -42,7 +42,8 @@ export class PostsComponent implements OnInit {
         }
         this.postService.getPostsPage(this.requestParams).subscribe(
             data => {
-                this.content = data._embedded.posts;
+                this.posts = data._embedded.posts;
+                console.log(this.posts);
                 this.page = data.page;
             }
         )
