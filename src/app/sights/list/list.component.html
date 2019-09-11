@@ -6,11 +6,11 @@
     </div>
 
 
-        <div *ngIf="!dataSource.filteredData.length" fxLayout="column" fxLayoutAlign="center">
+        <div *ngIf="!dataSource.data.length" fxLayout="column" fxLayoutAlign="center">
             No data found
         </div>
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
-               *ngIf="dataSource.filteredData.length"
+               *ngIf="dataSource.data.length > 0"
                fxLayout="column" fxLayoutAlign="center">
 
             <ng-container matColumnDef="label">

@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
 
     requestParameters = {};
 
-    dataSource:MatTableDataSource<Sight>;
+    dataSource = new MatTableDataSource();
     displayedColumns:string[] = [
         this.sightAttributes.Label, this.sightAttributes.Description,
         this.sightAttributes.Latitude, this.sightAttributes.Longitude,
@@ -59,6 +59,7 @@ export class ListComponent implements OnInit {
     }
 
     sortData(sort:Sort) {
+        this.requestParameters = {};
         switch (sort.active) {
             case this.sightAttributes.Visits:
                 switch (sort.direction) {
