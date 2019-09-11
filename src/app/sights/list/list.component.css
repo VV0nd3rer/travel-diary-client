@@ -1,12 +1,19 @@
 table {
-    width: 100%;
+    width: 75%;
 }
 
 .mat-form-field {
     font-size: 14px;
-    width: 100%;
 }
 
 td, th {
     width: 25%;
+}
+.container {
+    background: linear-gradient(45deg, rgb(228, 240, 121), rgb(142, 226, 93));
+}
+.content {
+    margin: 15px 30px;
+    padding: 10px;
+    background-color: seashell;
 }
