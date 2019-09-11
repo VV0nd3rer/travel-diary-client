@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
     console.log(sights);
     for (let place of sights) {
       const newMarker = marker(
-          [place.mapCoordLat, place.mapCoordLong], {
+          [place.latitude, place.longitude], {
             icon: icon({
               iconSize: [25, 41],
               iconAnchor: [13, 29],
