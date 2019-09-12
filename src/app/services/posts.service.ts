@@ -43,7 +43,6 @@ export class PostsService {
             );
     }
     updatePost(post: Post):Observable<any> {
-        console.log("Updating post" + JSON.stringify(post));
         return this.http.put<Post>(this.endpoint, post)
             .pipe(
                 map(res => {

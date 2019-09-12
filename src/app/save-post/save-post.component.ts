@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import {PostsService} from "../services/posts.service";
 
@@ -14,8 +13,8 @@ export class SavePostComponent implements OnInit {
     savePostForm:FormGroup;
     post:Post = new Post();
 
-    constructor(private route:ActivatedRoute,
-                private location: Location,
+    constructor(private activatedRoute:ActivatedRoute,
+                private router:Router,
                 private postService:PostsService,
                 private formBuilder:FormBuilder) {
         this.savePostForm = this.formBuilder.group({
@@ -30,7 +29,7 @@ export class SavePostComponent implements OnInit {
     }
 
     getPost():void {
-        const id = +this.route.snapshot.paramMap.get('id');
+        const id = +this.activatedRoute.snapshot.paramMap.get('id');
         this.postService.getPostDetails(id).subscribe(
             data => {
                 this.post = data;
@@ -50,7 +49,7 @@ export class SavePostComponent implements OnInit {
         this.post.text = this.savePostForm.get('text').value;
     }
     goBack(): void {
-        this.location.back();
+        this.router.navigateByUrl('/post/' + this.post.postId);
     }
     getEditorInitData() {
         var service = this.postService;
@@ -65,7 +64,7 @@ export class SavePostComponent implements OnInit {
         this.prepareUpdatedPost();
         this.postService.updatePost(this.post).subscribe(
             data => {
-                console.log("Upd post: " + JSON.stringify(data));
+                this.router.navigateByUrl('/post/' + this.post.postId);
             },
             err => console.log("Get post Error...")
         );

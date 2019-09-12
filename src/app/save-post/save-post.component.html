@@ -2,11 +2,16 @@
     <div class="container-navigation" fxFlex="15%" fxLayout="column"
          fxLayoutAlign="start center">
 
-            <div class="vertical-icon-panel">
-                <button mat-menu-item (click)="updatePost()">
-                    <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
-                </button>
-            </div>
+        <div class="vertical-icon-panel">
+            <button mat-menu-item (click)="updatePost()">
+                <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
+            </button>
+        </div>
+        <div class="vertical-icon-panel">
+            <button mat-icon-button (click)="goBack()">
+                <fa-icon [icon]="['fas', 'arrow-circle-left']" size="lg"></fa-icon>
+            </button>
+        </div>
     </div>
     <div class="content" fxFlex="75%">
         <form [formGroup]="savePostForm" (submit)="save()">

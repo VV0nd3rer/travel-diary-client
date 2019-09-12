@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import { Observable } from "rxjs/index";
 import {PostsService} from "../services/posts.service";
@@ -14,8 +13,8 @@ export class PostDetailComponent implements OnInit {
     postUrl:string;
     post:Post = new Post();
 
-    constructor(private route:ActivatedRoute,
-                private location: Location,
+    constructor(private activatedRoute:ActivatedRoute,
+                private router:Router,
                 private postService:PostsService) {
     }
 
@@ -25,7 +24,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     getPost():void {
-        const id = +this.route.snapshot.paramMap.get('id');
+        const id = +this.activatedRoute.snapshot.paramMap.get('id');
         this.postService.getPostDetails(id).subscribe(
             data => {
                 this.post = data;
@@ -35,6 +34,6 @@ export class PostDetailComponent implements OnInit {
         )
     }
     goBack(): void {
-        this.location.back();
+        this.router.navigateByUrl('/posts');
     }
 }
