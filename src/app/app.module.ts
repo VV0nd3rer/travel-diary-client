@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 import {
     MatToolbarModule,
     MatFormFieldModule,
@@ -129,6 +131,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        LeafletModule.forRoot(),
         EditorModule,
         CloudinaryModule.forRoot(Cloudinary, cloudinaryConfiguration),
         BrowserAnimationsModule,

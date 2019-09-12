@@ -10,9 +10,6 @@ import {
     MatSortModule
 } from '@angular/material';
 
-
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
 import { SightsRoutingModule } from './sights-routing.module';
 import { SightsComponent } from "./sights.component";
 import { MapComponent } from './map/map.component';
@@ -32,7 +29,6 @@ import { ListComponent } from './list/list.component';
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
-    LeafletModule.forRoot(),
     SightsRoutingModule
   ]
 })
