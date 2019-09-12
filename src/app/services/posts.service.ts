@@ -42,6 +42,18 @@ export class PostsService {
                 })
             );
     }
+    updatePost(post: Post):Observable<any> {
+        console.log("Updating post" + JSON.stringify(post));
+        return this.http.put<Post>(this.endpoint, post)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
     uploadImage(blobInfo: any, success: any, failure: any):void {
         var cloudinaryUrl = `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`;
         var uploadPreset = this.cloudinary.config().upload_preset;

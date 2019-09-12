@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'books', component: BooksComponent },
   { path: 'multimedia', component: MultimediaComponent },
   { path: 'post/:id', component: PostDetailComponent },
-  { path: 'save-post', component: SavePostComponent }
+  { path: 'save-post', component: SavePostComponent },
+  { path: 'save-post/:id', component: SavePostComponent }
 ];
 
 @NgModule({

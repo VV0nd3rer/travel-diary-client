@@ -1,20 +1,28 @@
 <div class="container" fxFlex fxLayout="row" fxLayoutAlign="center">
     <div class="container-navigation" fxFlex="15%" fxLayout="column"
          fxLayoutAlign="start center">
-        <div class="vertical-icon-panel">
-            <button mat-menu-item>
-                <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
-            </button>
-        </div>
+
+            <div class="vertical-icon-panel">
+                <button mat-menu-item (click)="updatePost()">
+                    <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
+                </button>
+            </div>
     </div>
     <div class="content" fxFlex="75%">
         <form [formGroup]="savePostForm" (submit)="save()">
+            <mat-form-field>
+                <input matInput placeholder="Title" formControlName="title" required>
+                <mat-error *ngIf="savePostForm.controls.title.hasError('required')">
+                    Please set the title.
+                </mat-error>
+            </mat-form-field>
             <h4>Post preview</h4>
             <input type="file">
 
             <h4>Post description</h4>
             <mat-form-field>
-                <textarea matInput #input minlength="10" formControlName="description"></textarea>
+                <textarea matInput #input minlength="10"
+                          formControlName="description"></textarea>
                 <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
                 <mat-error *ngIf="savePostForm.controls.description.hasError('required')">
                     Please enter description
@@ -30,7 +38,7 @@
             <div class="text">
                 <editor formControlName="text"
                         apiKey="lk4x1sy9vlt5l5pld7wtxgem69i1gf0iokw9sb3gxj43aue1"
-                        [init]="getInitData()"
+                        [init]="getEditorInitData()"
                         plugins="print preview fullpage searchreplace autolink
                         directionality visualblocks visualchars fullscreen
                         image link media template table charmap hr
