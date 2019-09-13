@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import { Post } from './../model/post';
 import { environment } from '../../environments/environment';
+import {throwError} from "rxjs/index";
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class PostsService {
     getPostsPage(requestParams?:any):Observable<any> {
         return this.http.get(this.endpoint, {params: requestParams})
             .pipe(
-                tap(val => console.log(`Calling getAllPosts method. The response: ${val}`)),
+                tap(val => console.log("Calling getAllPosts method ... ")),
                 map(res => {
                     return res;
                 }),

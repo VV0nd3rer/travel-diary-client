@@ -17,3 +17,7 @@
 .vertical-icon-panel {
     padding-top: 15px;
 }
+#map {
+    z-index: 99;
+    height: 400px;
+}

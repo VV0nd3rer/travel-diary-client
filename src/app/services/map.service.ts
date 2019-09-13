@@ -13,15 +13,15 @@ declare let L;
 export class MapService {
   isDevMode:boolean;
   map: any;
-  zoom = 6;
-  center = new L.LatLng(47.103035, 18.773455);
 
   constructor() { }
   ngOnInit() {
 
   }
-  initMap() {
-    this.map = L.map('map').setView(this.center, this.zoom);
+  initMap(latitude: number, longitude: number, zoom: number) {
+      console.log("latitude: " + latitude);
+      var center = new L.LatLng(latitude, longitude);
+    this.map = L.map('map').setView(center, zoom);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
         {
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
@@ -32,7 +32,7 @@ export class MapService {
         } as any).addTo(this.map);
   }
 
-  intGeosearch() {
+  initGeosearch() {
     const provider = new EsriProvider();
 
     const searchControl = new GeoSearchControl({
@@ -68,5 +68,17 @@ export class MapService {
             })
           }).bindPopup(place.label).addTo(this.map)
     }
+  }
+  setMarker(marker: any) {
+    console.log(marker);
+    new L.marker(
+        [marker.latitude, marker.longitude], {
+          icon: L.icon({
+            iconSize: [25, 41],
+            iconAnchor: [13, 29],
+            iconUrl: 'assets/marker-icon.png',
+            shadowUrl: 'assets/marker-shadow.png'
+          })
+        }).bindPopup(marker.label).addTo(this.map)
   }
 }

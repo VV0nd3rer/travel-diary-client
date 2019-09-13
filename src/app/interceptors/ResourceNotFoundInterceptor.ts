@@ -24,7 +24,7 @@ export class ResourceNotFoundInterceptor implements HttpInterceptor {
             .pipe(
                 map((event:HttpEvent<any>) => {
                     if (event instanceof HttpResponse) {
-                        console.log("Http Response event: ", event);
+                        console.log("Http Response event... ");
                     }
                     return event;
                 }),

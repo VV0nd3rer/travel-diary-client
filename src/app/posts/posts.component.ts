@@ -36,6 +36,7 @@ export class PostsComponent implements OnInit {
         this.currentView = mode;
     }
     updatePage(event?:PageEvent) {
+        console.log("Calling update page... ");
         if (event) {
             this.requestParams['page'] = event.pageIndex;
             this.requestParams['size'] = event.pageSize;
@@ -43,8 +44,9 @@ export class PostsComponent implements OnInit {
         this.postService.getPostsPage(this.requestParams).subscribe(
             data => {
                 this.posts = data._embedded.posts;
-                console.log(this.posts);
                 this.page = data.page;
+            },
+            error => {
             }
         )
     }

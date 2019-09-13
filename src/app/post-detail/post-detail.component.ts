@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import { Observable } from "rxjs/index";
 import {PostsService} from "../services/posts.service";
+import {MapService} from "../services/map.service";
 
 @Component({
     selector: 'app-post-detail',
@@ -12,10 +13,13 @@ import {PostsService} from "../services/posts.service";
 export class PostDetailComponent implements OnInit {
     postUrl:string;
     post:Post = new Post();
+    map:any;
+    zoom = 7;
 
     constructor(private activatedRoute:ActivatedRoute,
                 private router:Router,
-                private postService:PostsService) {
+                private postService:PostsService,
+                private mapService:MapService) {
     }
 
     ngOnInit() {
@@ -28,7 +32,9 @@ export class PostDetailComponent implements OnInit {
         this.postService.getPostDetails(id).subscribe(
             data => {
                 this.post = data;
-                console.log("Post: " + JSON.stringify(this.post));
+                this.mapService.initMap(data.sight.latitude, data.sight.longitude, this.zoom);
+                this.mapService.setMarker(data.sight);
+                this.map = this.mapService.map;
             },
             err => console.log("Get post Error...")
         )

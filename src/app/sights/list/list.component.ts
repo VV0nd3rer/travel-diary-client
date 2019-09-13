@@ -25,7 +25,6 @@ enum SightAttributes {
     styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-    sightAttributes = SightAttributes;
     requestParam = RequestParam;
     sortingCriteria = SightSortingCriteria;
 
@@ -33,9 +32,9 @@ export class ListComponent implements OnInit {
 
     dataSource = new MatTableDataSource();
     displayedColumns:string[] = [
-        this.sightAttributes.Label, this.sightAttributes.Description,
-        this.sightAttributes.Latitude, this.sightAttributes.Longitude,
-        this.sightAttributes.Visits
+        SightAttributes.Label, SightAttributes.Description,
+        SightAttributes.Latitude, SightAttributes.Longitude,
+        SightAttributes.Visits
     ];
 
     sights:Sight[] = [];
@@ -61,7 +60,7 @@ export class ListComponent implements OnInit {
     sortData(sort:Sort) {
         this.requestParameters = {};
         switch (sort.active) {
-            case this.sightAttributes.Visits:
+            case SightAttributes.Visits:
                 switch (sort.direction) {
                     case this.sortingCriteria.DESC:
                         this.setSortingRequestParam(this.sortingCriteria.MostVisited);
@@ -71,7 +70,7 @@ export class ListComponent implements OnInit {
                         break;
                 }
                 break;
-            case this.sightAttributes.Label:
+            case SightAttributes.Label:
                 switch (sort.direction) {
                     case this.sortingCriteria.DESC:
                         this.setSortingRequestParam(this.sortingCriteria.ByLabelDesc);

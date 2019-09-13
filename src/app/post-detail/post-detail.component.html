@@ -31,9 +31,12 @@
         </div>
     </div>
     <div class="content" fxFlex="75%">
+        <div id="map"></div>
         <h3>{{post.title}}</h3>
-        <div>{{post.author.username}}</div>
+        <div>{{post.author?.username}}</div>
         <div>{{post.updatedAt | date: 'dd/MM/yyyy'}}</div>
         <div [innerHTML]="post.text"></div>
+
     </div>
+
 </div>

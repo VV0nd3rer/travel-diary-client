@@ -20,14 +20,18 @@ export class MapComponent implements OnInit {
     isDevMode:boolean;
     map:any;
 
+    latitude = 47.103035;
+    longitude = 18.773455;
+    zoom = 6;
+
     constructor(private mapService:MapService,
                 private sightService:SightsService) {
     }
 
     ngOnInit() {
         this.isDevMode = isDevMode();
-        this.mapService.initMap();
-        this.mapService.intGeosearch();
+        this.mapService.initMap(this.latitude, this.longitude, this.zoom);
+        this.mapService.initGeosearch();
 
         this.getSights();
         this.map = this.mapService.map;

@@ -12,7 +12,6 @@ import {SavePostComponent} from "./save-post/save-post.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
-  { path: 'not-found', component: NotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
@@ -22,7 +21,8 @@ const routes: Routes = [
   { path: 'multimedia', component: MultimediaComponent },
   { path: 'post/:id', component: PostDetailComponent },
   { path: 'save-post', component: SavePostComponent },
-  { path: 'save-post/:id', component: SavePostComponent }
+  { path: 'save-post/:id', component: SavePostComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

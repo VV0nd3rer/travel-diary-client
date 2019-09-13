@@ -11,14 +11,12 @@ import {
     HttpErrorResponse
 } from "@angular/common/http";
 import { Observable, throwError, of } from "rxjs";
-import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
-    constructor(private cookieService:CookieService,
-                private userService:UserService) {
+    constructor(private userService:UserService) {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
@@ -30,7 +28,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             .pipe(
                 map((event:HttpEvent<any>) => {
                     if (event instanceof HttpResponse) {
-                        console.log("Http Response event: ", event);
+                        console.log("Http Response event... " + event.status);
                     }
                     return event;
                 }),
