@@ -2,6 +2,28 @@
     <div>
         <div fxLayout="row wrap">
             <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="{{'SEARCH.SIGHT' | translate}}"
+                               matInput [formControl]="sightSearchControl"
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngIf="isFilterDataLoading" class="is-loading">Loading...</mat-option>
+                            <ng-container *ngIf="!isFilterDataLoading">
+                                <mat-option *ngFor="let sight of filteredSights" [value]="sight.label">
+                                    <span><b>{{sight.label}}</b></span> |
+                                    <small>Visited {{sight.sightVisitsCounter.counter}} times</small>
+                                </mat-option>
+                            </ng-container>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <ng-container *ngIf="filterErrorMessage">
+                        {{filterErrorMessage}}
+                    </ng-container>
+                </form>
+
+
+
                 <input list="authors" class="search-data" name="author" spellcheck="false"
                        placeholder="{{'SEARCH.AUTHOR' | translate}}">
                 <datalist id="authors">
@@ -33,7 +55,7 @@
                 <mat-form-field class="search-form">
                     <input matInput autocomplete="off" spellcheck="false" placeholder="Search" type="text">
                 </mat-form-field>
-                <button class="search-button" button="submit" mat-raised-button>
+                <button button="submit" mat-raised-button (click)="searchPosts()">
                     <fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon>
                 </button>
             </div>

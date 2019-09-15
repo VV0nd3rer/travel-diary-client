@@ -28,6 +28,8 @@ import {
     MatMenuModule
 } from '@angular/material';
 
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMugHot, faHeart,
@@ -137,6 +139,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
+        MatAutocompleteModule,
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,

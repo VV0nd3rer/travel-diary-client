@@ -12,10 +12,7 @@
 .search-data::placeholder {
     padding-left: 15px;
 }
-.search-button {
-    background: none;
-    border-radius: 100%;
-}
+
 .search-button i {
     font-size: 40px;
     font-weight: 700;

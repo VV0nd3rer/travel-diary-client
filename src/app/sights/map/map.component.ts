@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
     }
 
     getSights() {
-        this.sightService.getSights().subscribe(
+        this.sightService.getAllSights().subscribe(
             data => {
                 this.mapService.setMarkers(data._embedded.sights);
             }

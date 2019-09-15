@@ -14,7 +14,7 @@ export class SightsService {
     constructor(private http:HttpClient) {
     }
 
-    getSights():Observable<any> {
+    getAllSights():Observable<any> {
         return this.http.get(this.endpoint + "/all")
             .pipe(
                 map(res => {
@@ -25,7 +25,17 @@ export class SightsService {
                 })
             );
     }
-
+    getSightsBySearchCondition(searchText?: string):Observable<any> {
+        return this.http.get(this.endpoint + "/all", {params: { text: searchText } })
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
     getSightsPage(requestParams?:any):Observable<any> {
         return this.http.get(this.endpoint, {params: requestParams})
             .pipe(
