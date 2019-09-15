@@ -26,6 +26,7 @@ export class UserService {
     public loggedInUser$:Observable<User>;
 
     baseUrl = environment.baseUrl;
+    endpoint = this.baseUrl + "/user";
 
     constructor(private http:HttpClient,
                 @Inject(USER_SERVICE_STORAGE) private storage: StorageService) {
@@ -100,6 +101,17 @@ export class UserService {
                 catchError(error => {
                     //return of(error);
                     return throwError(error);
+                })
+            );
+    }
+    getUsersBySearchCondition(searchText?: string):Observable<any> {
+        return this.http.get(this.endpoint + "/all", {params: { text: searchText } })
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
                 })
             );
     }

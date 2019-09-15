@@ -2,8 +2,8 @@
     <div>
         <div fxLayout="row wrap">
             <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
-                <form class="example-form">
-                    <mat-form-field class="example-full-width">
+
+                    <mat-form-field>
                         <input type="text" placeholder="{{'SEARCH.SIGHT' | translate}}"
                                matInput [formControl]="sightSearchControl"
                                [matAutocomplete]="auto">
@@ -20,9 +20,23 @@
                     <ng-container *ngIf="filterErrorMessage">
                         {{filterErrorMessage}}
                     </ng-container>
-                </form>
 
-
+                <mat-form-field>
+                    <input type="text" placeholder="{{'SEARCH.AUTHOR' | translate}}"
+                           matInput [formControl]="authorSearchControl"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngIf="isFilterDataLoading" class="is-loading">Loading...</mat-option>
+                        <ng-container *ngIf="!isFilterDataLoading">
+                            <mat-option *ngFor="let author of filteredAuthors" [value]="author.username">
+                                <span><b>{{author.username}}</b></span>
+                            </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <ng-container *ngIf="filterErrorMessage">
+                    {{filterErrorMessage}}
+                </ng-container>
 
                 <input list="authors" class="search-data" name="author" spellcheck="false"
                        placeholder="{{'SEARCH.AUTHOR' | translate}}">

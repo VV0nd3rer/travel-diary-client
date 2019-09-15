@@ -9,6 +9,7 @@ import { Page } from "../model/page";
 import { DataViewMode } from "../services/view-mode";
 import {Content} from "../model/content";
 import {SightsService} from "../services/sights.service";
+import {UserService} from "../services/user.service";
 
 @Component({
     selector: 'app-posts',
@@ -21,9 +22,8 @@ export class PostsComponent implements OnInit {
     viewModeEnum = DataViewMode;
     currentView:DataViewMode = this.viewModeEnum.Grid;
 
-    authSearchControl = new FormControl();
-    authors:string[] = new Array();
-    filteredAuthors:Observable<string[]>;
+    authorSearchControl = new FormControl();
+    filteredAuthors:any;
 
     sightSearchControl = new FormControl();
     filteredSights:any;
@@ -41,13 +41,16 @@ export class PostsComponent implements OnInit {
 
 
     constructor(private postService:PostsService,
-                private sightService:SightsService) {
+                private sightService:SightsService,
+                private userService:UserService) {
     }
 
     ngOnInit() {
         //this.updatePage();
         this.initSightsFilter();
         this.initSightsFilterData()
+
+        this.initAuthorsFilter();
 
     }
     initSightsFilter() {
@@ -80,13 +83,48 @@ export class PostsComponent implements OnInit {
                 this.isFilterDataLoading = false;
             });
     }
+    initAuthorsFilter() {
+        this.authorSearchControl.valueChanges
+            .pipe(
+                debounceTime(500),
+                tap(() => {
+                    this.filterErrorMessage = "";
+                    this.filteredSights = [];
+                    this.isFilterDataLoading = true;
+                }),
+                switchMap(value => {
+                    //if (value != '') {
+                        return this.userService.getUsersBySearchCondition(value);
+                   // }
+                    //else {
+
+                   // }
+
+                })
+            )
+            .subscribe(data => {
+                if (data._embedded == undefined) {
+                    this.filterErrorMessage = "Not found";
+                    this.filteredAuthors = [];
+                } else {
+                    this.filterErrorMessage = "";
+                    this.filteredAuthors = data._embedded.users;
+                }
+                this.isFilterDataLoading = false;
+            });
+    }
     initSightsFilterData() {
         this.sightService.getSightsPage()
             .subscribe(data => {
                 this.filteredSights = data._embedded.sights;
             });
     }
-
+    /*initAuthorsFilterData() {
+        this.userService.getUsersPage()
+            .subscribe(data => {
+                this.filteredAuthors = data._embedded.users;
+            });
+    }*/
 
     changeViewMode(mode:DataViewMode):void {
         this.currentView = mode;
@@ -109,9 +147,14 @@ export class PostsComponent implements OnInit {
             )
     }
     searchPosts() {
-        console.log("searching... ");
-        console.log("sightSearchControl.value: " + this.sightSearchControl.value);
-        this.requestParams['sight.label'] = this.sightSearchControl.value;
+        this.requestParams = [];
+        if(this.sightSearchControl.value != null) {
+            this.requestParams['sight.label'] = this.sightSearchControl.value;
+        }
+        if(this.authorSearchControl.value != null) {
+            this.requestParams['author.username'] = this.authorSearchControl.value;
+        }
+
         this.updatePage();
     }
 
