@@ -18,7 +18,7 @@ enum PostAttributes {
     styleUrls: ['./save-post.component.css']
 })
 export class SavePostComponent implements OnInit {
-    postExists: boolean;
+    postExists: any;
     savePostForm:FormGroup;
     post:Post = new Post();
     map:any;
@@ -68,7 +68,7 @@ export class SavePostComponent implements OnInit {
         this.map = this.mapService.map;
     }
     getSights() {
-        this.sightService.getSights().subscribe(
+        this.sightService.getAllSights().subscribe(
             data => {
                 this.mapService.setMarkers(data._embedded.sights);
             }
