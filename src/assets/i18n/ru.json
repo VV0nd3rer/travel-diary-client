@@ -11,8 +11,14 @@
     "TEXT": "В тексте"
   },
   "SORT": {
-    "NOT_SELECTED": "Сортировка",
+    "NOT_SELECTED": "Не выбрано",
     "NEWEST": "Самые новые",
     "OLDEST": "Самые старые"
+  },
+  "SIGHT": {
+    "LABEL": "Название",
+    "LATITUDE": "Широта",
+    "LONGITUDE": "Долгота",
+    "DESCRIPTION": "Описание"
   }
 }

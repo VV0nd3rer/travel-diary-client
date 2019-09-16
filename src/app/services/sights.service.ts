@@ -26,7 +26,7 @@ export class SightsService {
             );
     }
     getSightsBySearchCondition(searchText?: string):Observable<any> {
-        return this.http.get(this.endpoint + "/all", {params: { text: searchText } })
+        return this.http.get(this.endpoint + "/all", {params: { searchLikeAttr: searchText } })
             .pipe(
                 map(res => {
                     return res;

@@ -29,6 +29,7 @@ import {
 } from '@angular/material';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatSelectModule } from '@angular/material/select';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -36,7 +37,7 @@ import { faMugHot, faHeart,
          faTh, faThList,
          faSignInAlt, faUserPlus,
          faPlaneDeparture, faMapMarked,
-         faSearch,
+         faSearch, faWindowClose,
          faHiking, faCalendarAlt, faArchway, faComments,
          faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
 } from '@fortawesome/free-solid-svg-icons';
@@ -80,7 +81,7 @@ library.add(faHeart, faMugHot,
     faTh, faThList,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
-    faSearch,
+    faSearch, faWindowClose,
     faHiking, faCalendarAlt, faArchway, faComments,
     faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
 );
@@ -140,6 +141,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         LayoutModule,
         FlexLayoutModule,
         MatAutocompleteModule,
+        MatSelectModule,
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,

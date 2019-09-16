@@ -11,8 +11,14 @@
     "TEXT": "In text"
   },
   "SORT": {
-    "NOT_SELECTED": "Sort",
+    "NOT_SELECTED": "None",
     "NEWEST": "Newest",
     "OLDEST": "Oldest"
+  },
+  "SIGHT": {
+    "LABEL": "Label",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "DESCRIPTION": "Description"
   }
 }

@@ -53,7 +53,7 @@ export class ListComponent implements OnInit {
 
     applyFilter(filterValue:string) {
         console.log(filterValue);
-        this.requestParameters['text'] = filterValue.trim().toLowerCase();
+        this.requestParameters['searchLikeAttr'] = filterValue.trim().toLowerCase();
         this.updatePage();
     }
 

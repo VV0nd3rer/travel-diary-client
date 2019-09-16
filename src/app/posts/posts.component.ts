@@ -31,6 +31,7 @@ export class PostsComponent implements OnInit {
     isFilterDataLoading = false;
     filterErrorMessage:string;
 
+    selectedSort = "none";
 
     // Object vs Map
     // https://medium.com/front-end-weekly/es6-map-vs-object-what-and-when-b80621932373
@@ -46,13 +47,15 @@ export class PostsComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.updatePage();
+        this.loadPage();
+
         this.initSightsFilter();
-        this.initSightsFilterData()
+        this.initSightsFilterData();
 
         this.initAuthorsFilter();
-
+        this.initAuthorsFilterData();
     }
+
     initSightsFilter() {
         this.sightSearchControl.valueChanges
             .pipe(
@@ -67,6 +70,7 @@ export class PostsComponent implements OnInit {
                         return this.sightService.getSightsBySearchCondition(value);
                     }
                     else {
+                        this.filteredSights = []
                         return this.sightService.getSightsPage();
                     }
 
@@ -83,22 +87,24 @@ export class PostsComponent implements OnInit {
                 this.isFilterDataLoading = false;
             });
     }
+
     initAuthorsFilter() {
         this.authorSearchControl.valueChanges
             .pipe(
                 debounceTime(500),
                 tap(() => {
                     this.filterErrorMessage = "";
-                    this.filteredSights = [];
+                    this.filteredAuthors = [];
                     this.isFilterDataLoading = true;
                 }),
                 switchMap(value => {
-                    //if (value != '') {
+                    if (value != '') {
                         return this.userService.getUsersBySearchCondition(value);
-                   // }
-                    //else {
-
-                   // }
+                    }
+                    else {
+                        this.filteredAuthors = [];
+                        return this.userService.getUsersPage();
+                    }
 
                 })
             )
@@ -113,25 +119,27 @@ export class PostsComponent implements OnInit {
                 this.isFilterDataLoading = false;
             });
     }
+
     initSightsFilterData() {
+        console.log("init filter data");
         this.sightService.getSightsPage()
             .subscribe(data => {
                 this.filteredSights = data._embedded.sights;
             });
     }
-    /*initAuthorsFilterData() {
+
+    initAuthorsFilterData() {
         this.userService.getUsersPage()
             .subscribe(data => {
                 this.filteredAuthors = data._embedded.users;
             });
-    }*/
+    }
 
     changeViewMode(mode:DataViewMode):void {
         this.currentView = mode;
     }
 
-    updatePage(event?:PageEvent) {
-        console.log("Calling update page... ");
+    loadPage(event?:PageEvent) {
         if (event) {
             this.requestParams['page'] = event.pageIndex;
             this.requestParams['size'] = event.pageSize;
@@ -139,25 +147,41 @@ export class PostsComponent implements OnInit {
         this.postService.getPostsPage(this.requestParams)
             .subscribe(
                 data => {
-                    this.posts = data._embedded.posts;
-                    this.page = data.page;
+                    if (data._embedded) {
+                        this.posts = data._embedded.posts;
+                        this.page = data.page;
+                    }
+                    else {
+                        this.page = new Page();
+                        this.posts = [];
+                    }
                 },
                 error => {
                 }
             )
     }
+
     searchPosts() {
         this.requestParams = [];
-        if(this.sightSearchControl.value != null) {
+        if (this.sightSearchControl.value != null) {
             this.requestParams['sight.label'] = this.sightSearchControl.value;
         }
-        if(this.authorSearchControl.value != null) {
+        if (this.authorSearchControl.value != null) {
             this.requestParams['author.username'] = this.authorSearchControl.value;
         }
+        if (this.selectedSort != 'none') {
+            this.requestParams['sorting'] = this.selectedSort;
+        }
 
-        this.updatePage();
+        this.loadPage();
     }
-
+    resetSearch() {
+        this.requestParams = [];
+        this.selectedSort = "none";
+        this.sightSearchControl.reset();
+        this.authorSearchControl.reset();
+        this.loadPage();
+    }
 
 }
 

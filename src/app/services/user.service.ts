@@ -105,7 +105,7 @@ export class UserService {
             );
     }
     getUsersBySearchCondition(searchText?: string):Observable<any> {
-        return this.http.get(this.endpoint + "/all", {params: { text: searchText } })
+        return this.http.get(this.endpoint + "/all", {params: { searchLikeAttr: searchText } })
             .pipe(
                 map(res => {
                     return res;
@@ -115,5 +115,15 @@ export class UserService {
                 })
             );
     }
-
+    getUsersPage(requestParams?:any):Observable<any> {
+        return this.http.get(this.endpoint, {params: requestParams})
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
 }
