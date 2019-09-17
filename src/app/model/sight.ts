@@ -4,5 +4,4 @@ export class Sight {
     public description:string;
     public latitude:number;
     public longitude:number;
-
 }

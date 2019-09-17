@@ -13,15 +13,33 @@
             </button>
         </div>
     </div>
+
     <div class="content" fxFlex="75%">
+        <!-- Map area -->
         <div id="map"></div>
+
         <form [formGroup]="savePostForm" (submit)="save()">
+
+            <!-- Title -->
             <mat-form-field>
                 <input matInput placeholder="Title" formControlName="title" required>
                 <mat-error *ngIf="savePostForm.controls.title.hasError('required')">
                     Please set the title.
                 </mat-error>
             </mat-form-field>
+
+            <!-- Sight info -->
+            <div>
+                <mat-label>Your current sight: {{savePostForm.controls.sightLabel.value}}</mat-label>
+            </div>
+            <div *ngIf="getSearchLocation()">
+                <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
+            </div>
+            <mat-form-field>
+                <textarea matInput #input
+                          formControlName="sightDescription"></textarea>
+            </mat-form-field>
+
             <h4>Post preview</h4>
             <input type="file">
 
@@ -37,6 +55,7 @@
                     Description must be at least 10 characters long.
                 </mat-error>
             </mat-form-field>
+
             <h4>Impressions</h4>
             <!-- <mat-form-field> doen't work properly with TinyMCE
                  https://github.com/tinymce/tinymce-angular/issues/21
