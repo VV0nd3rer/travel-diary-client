@@ -8,9 +8,7 @@ import { environment } from '../../environments/environment';
 import {throwError} from "rxjs/index";
 
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class PostsService {
     baseUrl = environment.baseUrl;
     endpoint = this.baseUrl + "/posts";

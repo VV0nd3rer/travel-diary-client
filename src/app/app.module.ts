@@ -76,6 +76,7 @@ import { MultimediaComponent } from './multimedia/multimedia.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SavePostComponent } from './save-post/save-post.component';
+import {PostsService} from "./services/posts.service";
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
@@ -171,6 +172,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             multi: true
         },
         UserService,
+        PostsService,
         { provide: USER_SERVICE_STORAGE, useExisting: LOCAL_STORAGE }
 
     ],
