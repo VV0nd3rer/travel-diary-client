@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'sights', loadChildren: () => import(`./sights/sights.module`).then(m => m.SightsModule) },
+  { path: 'sights', loadChildren: './sights/sights.module#SightsModule' },
   { path: 'posts', component: PostsComponent },
   { path: 'books', component: BooksComponent },
   { path: 'multimedia', component: MultimediaComponent },
