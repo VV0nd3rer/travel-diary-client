@@ -65,7 +65,7 @@ export class MapService {
                     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png'
                 })
             },
-            popupFormat: ({ query, result }) => result.label + "<p>Please log in to tell something about this place</p>"
+            popupFormat: ({ query, result }) => result.label
         });
         this.map.addControl(searchControl);
         this.map.on('geosearch/showlocation', function (e) {

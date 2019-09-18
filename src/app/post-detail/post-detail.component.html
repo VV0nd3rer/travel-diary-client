@@ -9,7 +9,7 @@
                 <fa-icon [icon]="['fas', 'map-marked']" size="lg"></fa-icon>
             </button>
         </div>
-        <div class="vertical-icon-panel">
+        <div class="vertical-icon-panel" *ngIf="currentUser">
             <button mat-button [matMenuTriggerFor]="menu">
                 <fa-icon [icon]="['fas', 'cogs']" size="lg"></fa-icon>
             </button>

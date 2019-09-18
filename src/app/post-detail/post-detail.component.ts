@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from "../model/user";
 import { Post } from "../model/post";
 import { Observable } from "rxjs/index";
 import {PostsService} from "../services/posts.service";
 import {MapService} from "../services/map.service";
+import { UserService } from "../services/user.service";
 
 @Component({
     selector: 'app-post-detail',
@@ -11,6 +13,8 @@ import {MapService} from "../services/map.service";
     styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
+    currentUser:User;
+
     postUrl:string;
     post:Post = new Post();
     map:any;
@@ -18,13 +22,14 @@ export class PostDetailComponent implements OnInit {
 
     constructor(private activatedRoute:ActivatedRoute,
                 private router:Router,
+                private userService:UserService,
                 private postService:PostsService,
                 private mapService:MapService) {
     }
 
     ngOnInit() {
+        this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
         this.getPost();
-
     }
 
     getPost():void {

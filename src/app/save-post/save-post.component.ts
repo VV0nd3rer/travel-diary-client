@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import { Sight } from "../model/sight";
@@ -26,6 +26,7 @@ export class SavePostComponent implements OnInit {
     post:Post = new Post();
     map:any;
     zoom = 6;
+    searchLabel: any;
 
     constructor(private activatedRoute:ActivatedRoute,
                 private router:Router,
@@ -33,26 +34,39 @@ export class SavePostComponent implements OnInit {
                 private mapService:MapService,
                 private sightService:SightsService,
                 private formBuilder:FormBuilder) {
+
         this.savePostForm = this.formBuilder.group({
             'title': ['', [Validators.required]],
-            'sightLabel': ['', []],
+            'sightLabel': ['', [Validators.required]],
             'sightDescription': ['', []],
             'description': ['', [Validators.required, Validators.minLength(10)]],
             'text': ['', [Validators.required]]
+        }, {
+            validator: this.sightValidator
         });
     }
-
+    sightValidator(control: AbstractControl) {
+        let currentSightLabel = control.get(PostAttributes.SightLabel).value;
+        if(currentSightLabel === '') {
+            control.get(PostAttributes.SightLabel).setErrors({ sightRequired: true });
+        }
+    }
     ngOnInit() {
+        this.mapService.resetSearchLocation();
         this.getPost();
-
     }
 
     getSearchLocation() {
-        return this.mapService.getSearchLocation();
+        var location = this.mapService.getSearchLocation();
+        if(location != 'undefined' && location != null
+            && this.savePostForm.get(PostAttributes.SightLabel).value === '') {
+            this.savePostForm.get(PostAttributes.SightLabel).setValue(location.label);
+        }
+        return location;
     }
 
     getPost():void {
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        const id = +this.activatedRoute.snapshot.paramMap.get('id');
         this.postExists = id;
         if (this.postExists) {
             this.postService.getPostDetails(id).subscribe(
@@ -127,7 +141,7 @@ export class SavePostComponent implements OnInit {
 
     savePost() {
         this.prepareUpdatedPost();
-        this.mapService.resetSearchLocation();
+
         if(this.postExists) {
             this.updatePost();
         }

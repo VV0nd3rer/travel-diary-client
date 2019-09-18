@@ -3,7 +3,7 @@
          fxLayoutAlign="start center">
 
         <div class="vertical-icon-panel">
-            <button mat-menu-item (click)="savePost()">
+            <button mat-menu-item (click)="savePost()" [disabled]="!savePostForm.valid">
                 <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
             </button>
         </div>
@@ -30,12 +30,19 @@
 
             <!-- Sight info -->
             <div>
-                <mat-label>Your current sight: {{savePostForm.controls.sightLabel.value}}</mat-label>
+                <mat-label>
+                    Your current sight: {{savePostForm.controls.sightLabel.value}}
+                </mat-label>
+                <mat-error *ngIf="savePostForm.controls.sightLabel.hasError('sightRequired')">
+                    Please find a sight
+                </mat-error>
+
             </div>
             <div *ngIf="getSearchLocation()">
                 <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
-
             </div>
+
+            <h4>Sight description</h4>
             <mat-form-field>
                 <textarea matInput #input
                           formControlName="sightDescription"></textarea>
