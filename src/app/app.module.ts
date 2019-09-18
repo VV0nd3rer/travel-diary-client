@@ -50,7 +50,7 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import * as  Cloudinary from 'cloudinary-core';
+import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
 import cloudinaryConfiguration from '../cloudinary.config';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -92,7 +92,9 @@ library.add(faHeart, faMugHot,
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
 }
-
+export const cloudinary = {
+    Cloudinary: CloudinaryCore
+};
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
  * Everything in a module is private unless export keyword is used.*/
@@ -137,7 +139,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }),
         LeafletModule.forRoot(),
         EditorModule,
-        CloudinaryModule.forRoot(Cloudinary, cloudinaryConfiguration),
+        CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
