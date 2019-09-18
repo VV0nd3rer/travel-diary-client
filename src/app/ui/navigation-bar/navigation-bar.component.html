@@ -11,10 +11,11 @@
         <li><a routerLink="/books" routerLinkActive="active-link">{{ 'NAVIGATION.BOOKS' | translate}}</a></li>
         <li><a routerLink="/multimedia" routerLinkActive="active-link">What to watch/listen</a></li>
       </ul>
-      <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>Nav menu</button>
+      <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>Menu</button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+        <button mat-menu-item routerLink="/posts">{{ 'NAVIGATION.POSTS' | translate}}</button>
+        <button mat-menu-item routerLink="/books">{{ 'NAVIGATION.BOOKS' | translate}}</button>
+        <button mat-menu-item routerLink="/multimedia">What to watch/listen</button>
       </mat-menu>
 
     </div>
@@ -22,25 +23,29 @@
     <div fxFlex fxLayout fxLayoutAlign="end">
       <ul fxLayout class="navigation-items" fxHide.lt-md>
         <li>
-          <a *ngIf="!currentUser" routerLink="/login" (click)="activeLink = 'login'" [ngClass]="{'active-link' : activeLink == 'login'}">Login</a>
+          <a *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Login</a>
         </li>
         <li>
-          <a *ngIf="!currentUser" routerLink="/registration" (click)="activeLink = 'registration'" [ngClass]="{'active-link' : activeLink == 'registration'}">Registration</a>
+          <a *ngIf="!currentUser" routerLink="/registration" routerLinkActive="active-link">Registration</a>
         </li>
         <li>
           <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
         </li>
         <li>
-          <a *ngIf="currentUser" routerLink="/" (click)="logout();activeLink = ''">Logout</a>
+          <a *ngIf="currentUser" routerLink="/" routerLinkActive="active-link">Logout</a>
         </li>
       </ul>
 
-      <button mat-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>
+      <button mat-button [matMenuTriggerFor]="userMenu" fxHide fxShow.lt-md>
         <fa-icon [icon]="['fas', 'sign-in-alt']" size="2x"></fa-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item *ngIf="!currentUser" routerLink="/login" routerLinkActive="active-link">Login</button>
+        <button mat-menu-item *ngIf="!currentUser"
+                routerLink="/registration" routerLinkActive="active-link">Registration</button>
+        <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
+        <button mat-menu-item
+                *ngIf="currentUser" routerLink="/" routerLinkActive="active-link">Logout</button>
       </mat-menu>
 
       <select id="lang" #langSelect (change)="translate.use(langSelect.value)">
