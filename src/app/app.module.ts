@@ -49,8 +49,8 @@ import {
 
 import { EditorModule } from '@tinymce/tinymce-angular';
 
+import { Cloudinary } from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import * as  Cloudinary from 'cloudinary-core';
 
 import cloudinaryConfiguration from '../cloudinary.config';
 
@@ -93,7 +93,9 @@ library.add(faHeart, faMugHot,
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
 }
-
+export const cloudinaryLib = {
+    Cloudinary: Cloudinary
+};
 /* Access modifiers in TypeScript:
  * Everything in a class is public if not specified.
  * Everything in a module is private unless export keyword is used.*/
@@ -138,8 +140,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }),
         LeafletModule.forRoot(),
         EditorModule,
-        CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'travel-diary',
-            upload_preset: 'nw4fh32r' }),
+        CloudinaryModule.forRoot(cloudinaryLib, {
+            cloud_name: 'travel-diary',
+            upload_preset: 'nw4fh32r'
+        }),
         BrowserAnimationsModule,
         LayoutModule,
         FlexLayoutModule,
