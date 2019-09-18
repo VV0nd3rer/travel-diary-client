@@ -3,7 +3,7 @@
          fxLayoutAlign="start center">
 
         <div class="vertical-icon-panel">
-            <button mat-menu-item (click)="updatePost()">
+            <button mat-menu-item (click)="savePost()">
                 <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
             </button>
         </div>
@@ -34,6 +34,7 @@
             </div>
             <div *ngIf="getSearchLocation()">
                 <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
+
             </div>
             <mat-form-field>
                 <textarea matInput #input

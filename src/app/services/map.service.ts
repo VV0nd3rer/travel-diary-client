@@ -100,6 +100,8 @@ export class MapService {
                     iconUrl: 'assets/marker-icon.png',
                     shadowUrl: 'assets/marker-shadow.png'
                 })
-            }).bindPopup(marker.label).addTo(this.map)
+            }).bindPopup(marker.label).addTo(this.map).on('click', function(e) {
+            console.log(e);
+        });
     }
 }

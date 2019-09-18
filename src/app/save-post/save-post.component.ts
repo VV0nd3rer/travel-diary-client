@@ -52,7 +52,7 @@ export class SavePostComponent implements OnInit {
     }
 
     getPost():void {
-        const id = +this.activatedRoute.snapshot.paramMap.get('id');
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
         this.postExists = id;
         if (this.postExists) {
             this.postService.getPostDetails(id).subscribe(
@@ -125,17 +125,35 @@ export class SavePostComponent implements OnInit {
         }
     }
 
-    updatePost() {
+    savePost() {
         this.prepareUpdatedPost();
         this.mapService.resetSearchLocation();
+        if(this.postExists) {
+            this.updatePost();
+        }
+        else {
+            this.createPost();
+        }
+
+    }
+    private updatePost() {
         this.postService.updatePost(this.post).subscribe(
             data => {
                 this.router.navigateByUrl('/post/' + this.post.postId);
             },
             err => {
                 console.log("Get post Error..." + err);
-                this.router.navigateByUrl('/login');
             }
         );
+    }
+    private createPost() {
+        this.postService.savePost(this.post).subscribe(
+            data => {
+                this.router.navigateByUrl('/post/' + data.postId);
+            },
+            err => {
+                console.log("Get post Error..." + err);
+            }
+        )
     }
 }
