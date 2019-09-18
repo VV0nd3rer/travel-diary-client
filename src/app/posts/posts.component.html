@@ -116,7 +116,7 @@
         <div fxLayout="row" fxLayoutAlign="center" *ngIf="posts?.length">
             <mat-paginator
                     [length]="page.totalElements"
-                    [pageSize]="page.pageSize"
+                    [pageSize]="page.size"
                     [pageSizeOptions]="[5, 12, 24]"
                     (page)="loadPage($event)">
             </mat-paginator>

@@ -44,6 +44,7 @@ export class PostsComponent implements OnInit {
     constructor(private postService:PostsService,
                 private sightService:SightsService,
                 private userService:UserService) {
+        console.log(this.postService);
     }
 
     ngOnInit() {
