@@ -63,29 +63,5 @@ export class PostsService {
                 })
             );
     }
-    uploadImage(blobInfo: any, success: any, failure: any):void {
-        var cloudinaryUrl = `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`;
-        var uploadPreset = this.cloudinary.config().upload_preset;
-        var xhr, formData;
-        xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-        xhr.open('POST', cloudinaryUrl);
-        xhr.onload = function() {
-            var json;
-            if (xhr.status != 200) {
-                failure('HTTP Error: ' + xhr.status);
-                return;
-            }
-            json = JSON.parse(xhr.responseText);
-            if (!json || typeof json.url != 'string') {
-                failure('Invalid JSON: ' + xhr.responseText);
-                return;
-            }
-            success(json.url);
-        };
-        formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
-        formData.append("upload_preset", uploadPreset);
-        xhr.send(formData);
-    }
+
 }

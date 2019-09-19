@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import { Sight } from "../model/sight";
+import { UploadedImage } from "../model/uploaded-image"
+import { ImageService } from "../services/image.service";
 import { PostsService } from "../services/posts.service";
 import { MapService } from "../services/map.service";
 import { SightsService } from "../services/sights.service";
@@ -12,8 +14,10 @@ enum PostAttributes {
     SightLabel = "sightLabel",
     SightDescription = "sightDescription",
     Description = "description",
+    PreviewImageUrl = "previewImageUrl",
     Text = "text"
 }
+
 
 @Component({
     selector: 'app-save-post',
@@ -26,10 +30,15 @@ export class SavePostComponent implements OnInit {
     post:Post = new Post();
     map:any;
     zoom = 6;
-    searchLabel: any;
+    searchLabel:any;
+
+    selectedImgPreview:UploadedImage;
+    imgLoadingMessage:any;
+    previewImageUrl:any;
 
     constructor(private activatedRoute:ActivatedRoute,
                 private router:Router,
+                private imageService:ImageService,
                 private postService:PostsService,
                 private mapService:MapService,
                 private sightService:SightsService,
@@ -45,12 +54,14 @@ export class SavePostComponent implements OnInit {
             validator: this.sightValidator
         });
     }
-    sightValidator(control: AbstractControl) {
+
+    sightValidator(control:AbstractControl) {
         let currentSightLabel = control.get(PostAttributes.SightLabel).value;
-        if(currentSightLabel === '') {
-            control.get(PostAttributes.SightLabel).setErrors({ sightRequired: true });
+        if (currentSightLabel === '') {
+            control.get(PostAttributes.SightLabel).setErrors({sightRequired: true});
         }
     }
+
     ngOnInit() {
         this.mapService.resetSearchLocation();
         this.getPost();
@@ -58,7 +69,7 @@ export class SavePostComponent implements OnInit {
 
     getSearchLocation() {
         var location = this.mapService.getSearchLocation();
-        if(location != 'undefined' && location != null
+        if (location != 'undefined' && location != null
             && this.savePostForm.get(PostAttributes.SightLabel).value === '') {
             this.savePostForm.get(PostAttributes.SightLabel).setValue(location.label);
         }
@@ -99,6 +110,9 @@ export class SavePostComponent implements OnInit {
         this.sightService.getAllSights().subscribe(
             data => {
                 this.mapService.setMarkers(data._embedded.sights);
+            },
+            err => {
+                console.log('Error getting sights...');
             }
         )
 
@@ -110,6 +124,7 @@ export class SavePostComponent implements OnInit {
         this.savePostForm.get(PostAttributes.SightDescription).setValue(data.sight.description);
         this.savePostForm.get(PostAttributes.Description).setValue(data.description);
         this.savePostForm.get(PostAttributes.Text).setValue(data.text);
+        this.previewImageUrl = data.previewImageUrl;
     }
 
     private prepareUpdatedPost() {
@@ -119,6 +134,9 @@ export class SavePostComponent implements OnInit {
             this.post.sight.label = location.label;
             this.post.sight.latitude = location.y;
             this.post.sight.longitude = location.x;
+        }
+        if (this.previewImageUrl != 'undefined' && this.previewImageUrl != null) {
+            this.post.previewImageUrl = this.previewImageUrl;
         }
         this.post.title = this.savePostForm.get(PostAttributes.Title).value;
         this.post.sight.description = this.savePostForm.get(PostAttributes.SightDescription).value;
@@ -131,10 +149,10 @@ export class SavePostComponent implements OnInit {
     }
 
     getEditorInitData() {
-        var service = this.postService;
+        var service = this.imageService;
         return {
             images_upload_handler: function (blobInfo, success, failure) {
-                service.uploadImage(blobInfo, success, failure);
+                service.uploadImageInEditor(blobInfo, success, failure);
             }
         }
     }
@@ -142,7 +160,7 @@ export class SavePostComponent implements OnInit {
     savePost() {
         this.prepareUpdatedPost();
 
-        if(this.postExists) {
+        if (this.postExists) {
             this.updatePost();
         }
         else {
@@ -150,6 +168,63 @@ export class SavePostComponent implements OnInit {
         }
 
     }
+
+    setPreviewImage(files:any) {
+        if (files.length === 0)
+            return;
+
+        var mimeType = files[0].type;
+        if (mimeType.match(/image\/*/) == null) {
+            this.imgLoadingMessage = "Only images are supported.";
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = (_event) => {
+            this.previewImageUrl = reader.result;
+        }
+    }
+
+    uploadPreviewImage(imageInput:any) {
+        const file:File = imageInput.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event:any) => {
+
+            this.selectedImgPreview = new UploadedImage(event.target.result, file);
+            this.selectedImgPreview.pending = true;
+            this.imageService.uploadPreviewImage(this.selectedImgPreview.file).subscribe(
+                data => {
+                    this.previewImageUrl = data.url;
+
+                    this.selectedImgPreview.pending = false;
+                    this.selectedImgPreview.status = 'ok';
+                },
+                err => {
+                    console.log('Error...');
+                    this.selectedImgPreview.pending = false;
+                    this.selectedImgPreview.status = 'fail';
+                    this.selectedImgPreview.path = '';
+                }
+            );
+        });
+
+        reader.readAsDataURL(file);
+    }
+
+    /*uploadPreviewImage(imageInput: any) {
+     const file: File = imageInput.files[0];
+     const reader = new FileReader();
+     reader.addEventListener('load', (event: any) => {
+
+     this.selectedImgPreview = new PreviewImage(event.target.result, file);
+     console.log("selected file:  " + JSON.stringify(this.selectedImgPreview));
+     this.postService.uploadPreviewImage(this.selectedImgPreview.file);
+     });
+
+     reader.readAsDataURL(file);
+     }*/
+
     private updatePost() {
         this.postService.updatePost(this.post).subscribe(
             data => {
@@ -160,6 +235,7 @@ export class SavePostComponent implements OnInit {
             }
         );
     }
+
     private createPost() {
         this.postService.savePost(this.post).subscribe(
             data => {

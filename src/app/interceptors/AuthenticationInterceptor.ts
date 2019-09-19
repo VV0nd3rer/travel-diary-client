@@ -16,10 +16,15 @@ import { UserService } from '../services/user.service';
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
+    cloudinaryUrl = "https://api.cloudinary.com/v1_1/travel-diary/upload";
+
     constructor(private userService:UserService) {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
+        if (request.url === this.cloudinaryUrl) {
+            return next.handle(request);
+        }
         const clonedRequest =
             request.clone(
                 {withCredentials: true}

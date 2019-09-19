@@ -5,6 +5,7 @@ export class Post {
     public updatedAt: string;
     public title:string;
     public description:string;
+    public previewImageUrl:string;
     public text:string;
     public author: User;
     public sight: Sight;

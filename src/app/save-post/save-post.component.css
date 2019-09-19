@@ -28,3 +28,7 @@
     height: 400px;
     margin-bottom: 20px;
 }
+
+.preview-image i:hover {
+    cursor: pointer;
+}

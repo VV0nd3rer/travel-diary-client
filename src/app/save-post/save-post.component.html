@@ -4,12 +4,12 @@
 
         <div class="vertical-icon-panel">
             <button mat-menu-item (click)="savePost()" [disabled]="!savePostForm.valid">
-                <fa-icon [icon]="['fas', 'save']" size="lg"></fa-icon>
+                <fa-icon [icon]="['fas', 'save']" size="2x"></fa-icon>
             </button>
         </div>
         <div class="vertical-icon-panel">
             <button mat-icon-button (click)="goBack()">
-                <fa-icon [icon]="['fas', 'arrow-circle-left']" size="lg"></fa-icon>
+                <fa-icon [icon]="['fas', 'arrow-circle-left']" size="2x"></fa-icon>
             </button>
         </div>
     </div>
@@ -20,6 +20,33 @@
 
         <form [formGroup]="savePostForm" (submit)="savePost()">
 
+            <!-- Sight info -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Sight information
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>Find a sight in search panel of the map</p>
+                <mat-label>
+                    Your current sight: {{savePostForm.controls.sightLabel.value}}
+                </mat-label>
+                <mat-error *ngIf="savePostForm.controls.sightLabel.hasError('sightRequired')">
+                    Please find a sight
+                </mat-error>
+                <div *ngIf="getSearchLocation()">
+                    <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
+                </div>
+                <mat-form-field>
+                <textarea matInput #input placeholder="Sight description"
+                          formControlName="sightDescription"></textarea>
+                </mat-form-field>
+                </mat-form-field>
+            </mat-expansion-panel>
+
+
+
+
             <!-- Title -->
             <mat-form-field>
                 <input matInput placeholder="Title" formControlName="title" required>
@@ -28,32 +55,33 @@
                 </mat-error>
             </mat-form-field>
 
-            <!-- Sight info -->
-            <div>
-                <mat-label>
-                    Your current sight: {{savePostForm.controls.sightLabel.value}}
-                </mat-label>
-                <mat-error *ngIf="savePostForm.controls.sightLabel.hasError('sightRequired')">
-                    Please find a sight
-                </mat-error>
+            <!-- Image preview -->
+            <div class="preview-image">
+                <h4>Post preview</h4>
 
+                <label>
+                    <span>Choose image preview</span><br>
+                    <input #imgPreview type="file"
+                           accept="image/*"
+                           (change)="setPreviewImage(imgPreview.files)">
+                </label>
+                <img [src]="previewImageUrl" height="200" *ngIf="previewImageUrl">
+                <i (click)="uploadPreviewImage(imgPreview)">
+                    <fa-icon [icon]="['fas', 'upload']" size="2x"></fa-icon>
+                </i>
+
+                <div *ngIf="selectedImgPreview">
+                    <mat-spinner *ngIf="selectedImgPreview.pending"></mat-spinner>
+                    <div *ngIf="selectedImgPreview.status === 'ok'" class="alert alert-success"> Image Uploaded
+                        Succesfuly!
+                    </div>
+                    <div *ngIf="selectedImgPreview.status === 'fail'" class="alert alert-danger"> Image Upload Failed!
+                    </div>
+                </div>
             </div>
-            <div *ngIf="getSearchLocation()">
-                <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
-            </div>
 
-            <h4>Sight description</h4>
             <mat-form-field>
-                <textarea matInput #input
-                          formControlName="sightDescription"></textarea>
-            </mat-form-field>
-
-            <h4>Post preview</h4>
-            <input type="file">
-
-            <h4>Post description</h4>
-            <mat-form-field>
-                <textarea matInput #input minlength="10"
+                <textarea matInput #input minlength="10" placeholder="Post description"
                           formControlName="description"></textarea>
                 <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
                 <mat-error *ngIf="savePostForm.controls.description.hasError('required')">
@@ -64,7 +92,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <h4>Impressions</h4>
+            <h4>Text</h4>
             <!-- <mat-form-field> doen't work properly with TinyMCE
                  https://github.com/tinymce/tinymce-angular/issues/21
             -->

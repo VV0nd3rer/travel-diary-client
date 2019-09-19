@@ -25,21 +25,23 @@ import {
     MatSortModule,
     MatListModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule
 } from '@angular/material';
-
-import { MatAutocompleteModule } from '@angular/material/autocomplete'
-import { MatSelectModule } from '@angular/material/select';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMugHot, faHeart,
-         faTh, faThList,
-         faSignInAlt, faUserPlus,
-         faPlaneDeparture, faMapMarked,
-         faSearch, faWindowClose,
-         faHiking, faCalendarAlt, faArchway, faComments,
-         faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
+    faTh, faThList,
+    faSignInAlt, faUserPlus,
+    faPlaneDeparture, faMapMarked,
+    faSearch, faWindowClose,
+    faHiking, faCalendarAlt, faArchway, faComments,
+    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
+    faUpload
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -77,7 +79,8 @@ import { MultimediaComponent } from './multimedia/multimedia.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SavePostComponent } from './save-post/save-post.component';
-import {PostsService} from "./services/posts.service";
+import { PostsService } from "./services/posts.service";
+import { ImageService } from "./services/image.service";
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
@@ -85,12 +88,13 @@ library.add(faHeart, faMugHot,
     faPlaneDeparture, faMapMarked,
     faSearch, faWindowClose,
     faHiking, faCalendarAlt, faArchway, faComments,
-    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave
+    faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
+    faUpload
 );
 
 // AoT requires an exported function for factories
 // More: https://www.npmjs.com/package/@ngx-translate/core#aot
-export function HttpLoaderFactory(httpClient: HttpClient) {
+export function HttpLoaderFactory(httpClient:HttpClient) {
     return new TranslateHttpLoader(httpClient);
 }
 export const cloudinaryLib = {
@@ -102,12 +106,12 @@ export const cloudinaryLib = {
 
 /*An NgModule describes how the application parts fit together.
 
-  Every application has at least one Angular module,
-  the root module that you bootstrap to launch the application.
-  By convention, it is usually called AppModule.*/
+ Every application has at least one Angular module,
+ the root module that you bootstrap to launch the application.
+ By convention, it is usually called AppModule.*/
 @NgModule({
     /* The module's declarations array tells Angular which components belong to that module.
-       As you create more components, add them to declarations.*/
+     As you create more components, add them to declarations.*/
     declarations: [
         AppComponent,
         LoginComponent,
@@ -123,7 +127,7 @@ export const cloudinaryLib = {
         SavePostComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
-       this particular module needs to function properly.*/
+     this particular module needs to function properly.*/
     imports: [
         BrowserModule,
         FormsModule,
@@ -149,6 +153,9 @@ export const cloudinaryLib = {
         FlexLayoutModule,
         MatAutocompleteModule,
         MatSelectModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        MatMenuModule,
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,
@@ -163,8 +170,8 @@ export const cloudinaryLib = {
         MatMenuModule
     ],
     /* The providers array is where you list the services the app needs.
-       When you list services here, they are available app-wide.
-       You can scope them when using feature modules and lazy loading.*/
+     When you list services here, they are available app-wide.
+     You can scope them when using feature modules and lazy loading.*/
     providers: [
         CookieService,
         {
@@ -179,12 +186,13 @@ export const cloudinaryLib = {
         },
         UserService,
         PostsService,
-        { provide: USER_SERVICE_STORAGE, useExisting: LOCAL_STORAGE }
+        ImageService,
+        {provide: USER_SERVICE_STORAGE, useExisting: LOCAL_STORAGE}
 
     ],
     /* The providers array is where you list the services the app needs.
-       When you list services here, they are available app-wide.
-       You can scope them when using feature modules and lazy loading.*/
+     When you list services here, they are available app-wide.
+     You can scope them when using feature modules and lazy loading.*/
     bootstrap: [AppComponent]
 })
 export class AppModule {
