@@ -1,7 +1,7 @@
-<div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div>
-        <div fxLayout="row wrap">
-            <div class="search" fxFlex fxLayoutAlign="start center" fxLayoutGap="25px">
+<div class="container" fxLayout="column">
+
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="center">
+            <div class="search" fxFlex="80%" fxLayoutGap="25px">
 
                 <!-- Search by sight -->
                 <mat-form-field>
@@ -36,7 +36,6 @@
 
                 <!-- Sort -->
                 <mat-form-field>
-                    <mat-label>{{'SORT.NOT_SELECTED' | translate}}</mat-label>
                     <mat-select [(value)]="selectedSort">
                         <mat-option value="none">{{'SORT.NOT_SELECTED' | translate}}</mat-option>
                         <mat-option value="oldest">{{'SORT.OLDEST' | translate}}</mat-option>
@@ -54,7 +53,7 @@
                 </button>
             </div>
 
-            <div class="view-mode" fxFlex fxLayoutAlign="end center" fxLayoutGap="15px">
+            <div class="view-mode" fxLayoutAlign="end center" fxLayoutGap="15px">
                 <i (click)="changeViewMode(viewModeEnum.List)"
                    [ngClass]="{'active-view' : currentView == viewModeEnum.List}">
                     <fa-icon [icon]="['fas', 'th-list']"></fa-icon>
@@ -122,5 +121,5 @@
             </mat-paginator>
         </div>
         <div *ngIf="posts.length === 0">Posts not found</div>
-    </div>
+
 </div>

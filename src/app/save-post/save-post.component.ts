@@ -145,7 +145,13 @@ export class SavePostComponent implements OnInit {
     }
 
     goBack():void {
-        this.router.navigateByUrl('/post/' + this.post.postId);
+        if (this.postExists) {
+            this.router.navigateByUrl('/post/' + this.post.postId);
+        }
+        else {
+            this.router.navigateByUrl('/posts');
+        }
+
     }
 
     getEditorInitData() {
@@ -211,19 +217,6 @@ export class SavePostComponent implements OnInit {
 
         reader.readAsDataURL(file);
     }
-
-    /*uploadPreviewImage(imageInput: any) {
-     const file: File = imageInput.files[0];
-     const reader = new FileReader();
-     reader.addEventListener('load', (event: any) => {
-
-     this.selectedImgPreview = new PreviewImage(event.target.result, file);
-     console.log("selected file:  " + JSON.stringify(this.selectedImgPreview));
-     this.postService.uploadPreviewImage(this.selectedImgPreview.file);
-     });
-
-     reader.readAsDataURL(file);
-     }*/
 
     private updatePost() {
         this.postService.updatePost(this.post).subscribe(
