@@ -10,6 +10,7 @@ import {
     HttpResponse,
     HttpErrorResponse
 } from "@angular/common/http";
+import { Router } from '@angular/router';
 import { Observable, throwError, of } from "rxjs";
 import { UserService } from '../services/user.service';
 
@@ -18,7 +19,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
     cloudinaryUrl = "https://api.cloudinary.com/v1_1/travel-diary/upload";
 
-    constructor(private userService:UserService) {
+    constructor(private userService:UserService, private router:Router) {
     }
 
     intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
@@ -41,6 +42,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                     console.log("Error response status: ", error.status);
                     if (error.status === 401) {
                         this.userService.setLoggedUser(null);
+                        this.router.navigateByUrl("/user/login");
                     }
                     return throwError(error);
                 }));
