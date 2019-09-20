@@ -42,7 +42,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                     console.log("Error response status: ", error.status);
                     if (error.status === 401) {
                         this.userService.setLoggedUser(null);
-                        this.router.navigateByUrl("/user/login");
+                        this.router.navigateByUrl("/login");
                     }
                     return throwError(error);
                 }));
