@@ -1,6 +1,6 @@
 .container {
     border-top: 2px solid #49aa3c;
-    background: linear-gradient(45deg, rgb(228, 240, 121), rgb(142, 226, 93));
+    background: #e6e1df;
 }
 .search-data {
     font-size: 16px;
@@ -39,7 +39,7 @@
     color: #1c7a0f;
 }
 .list {
-    width: 100%;
+    width: 70%;
     padding: 5px 8px;
 }
 .grid {
@@ -54,13 +54,28 @@
     padding: 5px 8px;
 }
 .card-item {
-    background: url("../../assets/img/wood.jpg") center no-repeat;
-    background-size: cover;
+    background: seashell;
     border: 1px solid #aa853c;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
     position: relative;
     word-wrap: break-word;
 }
+.grid img {
+    max-width:400px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+}
+.list img {
+    max-width:450px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+}
+.grid .mat-card-content {
+    height: 350px;
+}
+
 .dot-divider::after {
     content: '\2022';
 }
@@ -72,13 +87,11 @@
 .card-item .mat-raised-button {
     background-color: burlywood;
 }
-.card-item .mat-card-content {
+/*.card-item .mat-card-content {
     height: 300px;
     overflow-y: auto;
-}
-.mat-card-content img {
-    width: 100%;
-}
+}*/
+
 /*.card-item mat-card-actions {
     position: absolute;
     bottom: 10px;

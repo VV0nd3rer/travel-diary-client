@@ -1,7 +1,6 @@
 .mat-toolbar {
     border-top: 1px solid #aa853c;
-    background: radial-gradient(25% 70%, #FAECD5, #cfa654);
-    /* background: #cfa654; */
+    background: #CFA654;
 }
 .bottom-icon {
     color: #ff2c20;

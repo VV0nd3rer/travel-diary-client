@@ -29,10 +29,10 @@
           <a *ngIf="!currentUser" routerLink="/registration" routerLinkActive="active-link">Registration</a>
         </li>
         <li>
-          <div *ngIf="currentUser">Welcome <i id="user-name">{{currentUser.username}}</i></div>
+          <div id="user-name" *ngIf="currentUser">Welcome <i>{{currentUser.username}}</i></div>
         </li>
         <li>
-          <a *ngIf="currentUser" routerLink="/" routerLinkActive="active-link">Logout</a>
+          <a *ngIf="currentUser" routerLink="/logout" routerLinkActive="active-link">Logout</a>
         </li>
       </ul>
 

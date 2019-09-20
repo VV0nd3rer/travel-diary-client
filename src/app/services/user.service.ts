@@ -82,9 +82,10 @@ export class UserService {
     }
 
     logout():Observable<any> {
-        return this.http.get(this.baseUrl + "/user/logout")
+        return this.http.get(this.endpoint + "/logout")
             .pipe(
                 map(res => {
+                    this.setLoggedUser(null);
                     return res;
                 }),
                 catchError(error => {

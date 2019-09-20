@@ -1,7 +1,7 @@
 .header {
-  background: url("../../../assets/img/headercut.png") center no-repeat;
+  background: url("../../../assets/img/header.jpg") center no-repeat;
   background-size: cover;
-  height: 220px;
+  height: 280px;
 }
 mat-toolbar{
   background: rgba(0, 59, 39, 0.7);

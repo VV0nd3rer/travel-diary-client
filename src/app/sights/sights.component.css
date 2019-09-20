@@ -1,6 +1,6 @@
 .container {
     border-top: 2px solid #49aa3c;
-    background: linear-gradient(45deg, rgb(228, 240, 121), rgb(142, 226, 93));
+    background: seashell;
     padding-bottom: 8%;
 }
 ul {
