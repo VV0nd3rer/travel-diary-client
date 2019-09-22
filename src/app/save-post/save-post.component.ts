@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from "../model/post";
 import { Sight } from "../model/sight";
+import { User } from "../model/user";
 import { UploadedImage } from "../model/uploaded-image"
 import { ImageService } from "../services/image.service";
 import { PostsService } from "../services/posts.service";
+import { UserService } from "../services/user.service";
 import { MapService } from "../services/map.service";
 import { SightsService } from "../services/sights.service";
 
@@ -25,6 +27,7 @@ enum PostAttributes {
     styleUrls: ['./save-post.component.css']
 })
 export class SavePostComponent implements OnInit {
+    currentUser:User;
     postExists:any;
     savePostForm:FormGroup;
     post:Post = new Post();
@@ -40,6 +43,7 @@ export class SavePostComponent implements OnInit {
                 private router:Router,
                 private imageService:ImageService,
                 private postService:PostsService,
+                private userService:UserService,
                 private mapService:MapService,
                 private sightService:SightsService,
                 private formBuilder:FormBuilder) {
@@ -63,6 +67,7 @@ export class SavePostComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
         this.mapService.resetSearchLocation();
         this.getPost();
     }

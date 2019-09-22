@@ -2,7 +2,7 @@
     <div class="container-navigation" fxFlex="15%" fxLayout="column"
          fxLayoutAlign="start center">
 
-        <div class="vertical-icon-panel">
+        <div class="vertical-icon-panel" *ngIf="currentUser && currentUser.username == post.author?.username">
             <button mat-menu-item (click)="savePost()" [disabled]="!savePostForm.valid">
                 <fa-icon [icon]="['fas', 'save']" size="2x"></fa-icon>
             </button>
@@ -26,14 +26,16 @@
                     <mat-panel-title>
                         Sight information
                     </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-error *ngIf="savePostForm.controls.sightLabel.hasError('sightRequired')">
+                            Please find a sight
+                        </mat-error>
+                    </mat-panel-description>
                 </mat-expansion-panel-header>
                 <p>Find a sight in search panel of the map</p>
-                <mat-label>
+                <mat-label *ngIf="!savePostForm.controls.sightLabel.hasError('sightRequired')">
                     Your current sight: {{savePostForm.controls.sightLabel.value}}
                 </mat-label>
-                <mat-error *ngIf="savePostForm.controls.sightLabel.hasError('sightRequired')">
-                    Please find a sight
-                </mat-error>
                 <div *ngIf="getSearchLocation()">
                     <mat-label>New sight: {{getSearchLocation().label}}</mat-label>
                 </div>
