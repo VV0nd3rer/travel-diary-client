@@ -63,7 +63,7 @@ export class UserService {
 
     login(user:User):Observable<any> {
 
-        return this.http.post(this.baseUrl + "/user/login", user)
+        return this.http.post(this.endpoint + "/login", user)
             .pipe(
                 map(res => {
                     return res;
@@ -94,7 +94,7 @@ export class UserService {
     }
 
     register(registrationForm:RegistrationForm):Observable<any> {
-        return this.http.post(this.baseUrl + "user/register", registrationForm)
+        return this.http.post(this.endpoint + "/register", registrationForm)
             .pipe(
                 map(res => {
                     return res;

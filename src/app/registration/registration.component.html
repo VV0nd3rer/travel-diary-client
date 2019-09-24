@@ -4,13 +4,13 @@
     <mat-card-header class="card-header">
       <mat-card-title class="card-title">
         <div mat-card-avatar><fa-icon class="card-title-icon" [icon]="['fas', 'user-plus']"></fa-icon></div>
-        <span>Create your account</span>
+        <span>{{'REGISTRATION.TITLE' | translate}}</span>
       </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
       <div class="alert-msg" [hidden]="!registrationError">
-        There was a problem during registration. Please try again.
+        {{ 'REGISTRATION.' + registrationErrorMessage | translate}}
       </div>
       <div class="alert-msg" [hidden]="!internalServerError">
         Internal server error. Please try again later.

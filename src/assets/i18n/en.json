@@ -20,5 +20,11 @@
     "LATITUDE": "Latitude",
     "LONGITUDE": "Longitude",
     "DESCRIPTION": "Description"
+  },
+  "REGISTRATION": {
+    "TITLE": "Create your account",
+    "USER_EMAIL_ALREADY_EXIST": "Email already registered.",
+    "USER_USERNAME_ALREADY_EXIST": "Username already exists.",
+    "NEW_PASSWORD_MISMATCHED": "Password mismatched"
   }
 }

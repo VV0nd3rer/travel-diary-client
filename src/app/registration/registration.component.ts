@@ -9,45 +9,54 @@ import { ServiceResponse } from "../model/service-response";
 
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+    selector: 'app-registration',
+    templateUrl: './registration.component.html',
+    styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  registrationForm: any;
+    registrationForm:any;
 
-  serviceResponse: ServiceResponse<any>;
+    serviceResponse:ServiceResponse<any>;
 
-  registrationError: boolean = false;
-  internalServerError: boolean = false;
+    registrationError:boolean = false;
+    registrationErrorMessage:string = '';
+    internalServerError:boolean = false;
 
-  constructor(private userService: UserService,
-              private formBuilder: FormBuilder,
-              private router: Router) {
-    this.registrationForm = this.formBuilder.group({
-      'username': ['', [Validators.required, Validators.minLength(5)]],
-      'email': ['', [Validators.required, ValidationService.emailValidator]],
-      'password': ['', [Validators.required, ValidationService.passwordValidator]],
-      'confirmPassword': ['', Validators.required]
-    }, {
-      validator: ValidationService.passwordMismatchValidator
-    });
-  }
+    constructor(private userService:UserService,
+                private formBuilder:FormBuilder,
+                private router:Router) {
+        this.registrationForm = this.formBuilder.group({
+            'username': ['', [Validators.required, Validators.minLength(5)]],
+            'email': ['', [Validators.required, ValidationService.emailValidator]],
+            'password': ['', [Validators.required, ValidationService.passwordValidator]],
+            'confirmPassword': ['', Validators.required]
+        }, {
+            validator: ValidationService.passwordMismatchValidator
+        });
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+    }
 
-  register(): void {
-    this.userService.register(this.registrationForm).subscribe(
-        res => {
-          /*console.log(res);*/
-          this.serviceResponse = res;
-          this.serviceResponse.responseCode != "OK" ? this.registrationError = true :
-              this.router.navigateByUrl('/');
-        },
-        error => { this.internalServerError = true; }
-    );
-  }
+    register():void {
+        this.userService.register(this.registrationForm.value).subscribe(
+            res => {
+                console.log(res);
+                this.serviceResponse = res;
+                if (this.serviceResponse.responseCode != "OK") {
+                    this.registrationError = true;
+                    this.registrationErrorMessage = this.serviceResponse.responseMessage;
+                }
+                else {
+                    this.router.navigateByUrl('/user-info');
+                }
+
+            },
+            error => {
+                this.internalServerError = true;
+            }
+        );
+    }
 
 }

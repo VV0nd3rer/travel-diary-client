@@ -20,5 +20,11 @@
     "LATITUDE": "Широта",
     "LONGITUDE": "Долгота",
     "DESCRIPTION": "Описание"
+  },
+  "REGISTRATION": {
+    "TITLE": "Создайте свой профиль",
+    "USER_EMAIL_ALREADY_EXIST": "Такой имейл уже зарегестрирован",
+    "USER_USERNAME_ALREADY_EXIST": "Такое имя уже существует",
+    "NEW_PASSWORD_MISMATCHED": "Пароли не совпадают"
   }
 }

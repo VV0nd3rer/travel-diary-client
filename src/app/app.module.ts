@@ -38,7 +38,7 @@ import { faMugHot, faHeart,
     faTh, faThList,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
-    faSearch, faWindowClose,
+    faSearch, faWindowClose, faPen,
     faHiking, faCalendarAlt, faArchway, faComments,
     faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
     faUpload
@@ -81,12 +81,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SavePostComponent } from './save-post/save-post.component';
 import { PostsService } from "./services/posts.service";
 import { ImageService } from "./services/image.service";
+import { UserInfoComponent } from './user-info/user-info.component';
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
     faSignInAlt, faUserPlus,
     faPlaneDeparture, faMapMarked,
-    faSearch, faWindowClose,
+    faSearch, faWindowClose, faPen,
     faHiking, faCalendarAlt, faArchway, faComments,
     faCogs, faEdit, faTrashAlt, faArrowCircleLeft, faSave,
     faUpload
@@ -124,7 +125,8 @@ export const cloudinaryLib = {
         MultimediaComponent,
         PostDetailComponent,
         NotFoundComponent,
-        SavePostComponent
+        SavePostComponent,
+        UserInfoComponent
     ],
     /* The module's imports array tells Angular about other NgModules that
      this particular module needs to function properly.*/
