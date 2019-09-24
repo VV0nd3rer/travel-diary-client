@@ -9,7 +9,7 @@ import { MultimediaComponent } from "./multimedia/multimedia.component";
 import {PostDetailComponent} from "./post-detail/post-detail.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {SavePostComponent} from "./save-post/save-post.component";
-import {UserInfoComponent} from "./user-info/user-info.component";
+import {UserInfoComponent} from "./action-info/action-info.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full' },

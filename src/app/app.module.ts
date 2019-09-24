@@ -81,7 +81,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SavePostComponent } from './save-post/save-post.component';
 import { PostsService } from "./services/posts.service";
 import { ImageService } from "./services/image.service";
-import { UserInfoComponent } from './user-info/user-info.component';
+import { UserInfoComponent } from './action-info/action-info.component';
 
 library.add(faHeart, faMugHot,
     faTh, faThList,
