@@ -47,4 +47,12 @@ export class PostDetailComponent implements OnInit {
     goBack(): void {
         this.router.navigateByUrl('/posts');
     }
+    deletePost(): void {
+        this.postService.deletePost(this.post.postId).subscribe(
+            data => {
+                this.goBack();
+            },
+            err => console.log("Error " + err)
+        )
+    }
 }

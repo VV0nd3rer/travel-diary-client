@@ -5,6 +5,7 @@ import { debounceTime, tap, switchMap, finalize, map, startWith } from 'rxjs/ope
 import { Observable } from 'rxjs';
 import { PostsService } from "../services/posts.service";
 import { Post } from "../model/post";
+import { User } from "../model/user";
 import { Page } from "../model/page";
 import { DataViewMode } from "../services/view-mode";
 import {Content} from "../model/content";
@@ -17,6 +18,7 @@ import {UserService} from "../services/user.service";
     styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+    currentUser:User;
     page:Page = new Page();
     posts:Post[] = [];
     viewModeEnum = DataViewMode;
@@ -48,6 +50,8 @@ export class PostsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userService.loggedInUser$.subscribe(x => this.currentUser = x);
+
         this.loadPage();
 
         this.initSightsFilter();

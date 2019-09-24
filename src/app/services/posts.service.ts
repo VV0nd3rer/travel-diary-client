@@ -63,5 +63,15 @@ export class PostsService {
                 })
             );
     }
-
+    deletePost(id: any):Observable<any> {
+        return this.http.delete(this.endpoint + "/" + id)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError((error:any) => {
+                    return of(error);
+                })
+            );
+    }
 }

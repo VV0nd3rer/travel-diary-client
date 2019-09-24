@@ -51,6 +51,9 @@
                 <button button="submit" mat-raised-button (click)="resetSearch()">
                     <fa-icon [icon]="['fas', 'window-close']" size="lg"></fa-icon>
                 </button>
+                <button class="create-post-btn" title="Create new post" mat-raised-button routerLink="/save-post" *ngIf="currentUser">
+                    <fa-icon [icon]="['fas', 'pen']"></fa-icon>
+                </button>
             </div>
 
             <div class="view-mode" fxLayoutAlign="end center" fxLayoutGap="15px">
