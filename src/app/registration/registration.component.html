@@ -24,14 +24,14 @@
           Invalid email address
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="item" hintLabel="Min 5 characters">
-        <input matInput #input minlength="5" formControlName="username" placeholder="Username">
-        <mat-hint align="end">{{input.value?.length || 0}}/5</mat-hint>
+      <mat-form-field class="item" hintLabel="Min 4 characters">
+        <input matInput #input minlength="4" formControlName="username" placeholder="Username">
+        <mat-hint align="end">{{input.value?.length || 0}}/4</mat-hint>
         <mat-error *ngIf="registrationForm.controls.username.hasError('required')">
           Please enter your name
         </mat-error>
         <mat-error *ngIf="registrationForm.controls.username.hasError('minlength')">
-          Name must be at least 5 characters long.
+          Name must be at least 4 characters long.
         </mat-error>
       </mat-form-field>
 

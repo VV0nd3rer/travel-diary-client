@@ -2,11 +2,13 @@
     <div class="container-navigation" fxFlex="15%" fxLayout="column"
          fxLayoutAlign="start center">
 
-        <div class="vertical-icon-panel" *ngIf="currentUser && currentUser.username == post.author?.username">
+        <div class="vertical-icon-panel" *ngIf="currentUser &&
+        (currentUser.username == post.author?.username || !postExists)">
             <button mat-menu-item (click)="savePost()" [disabled]="!savePostForm.valid">
                 <fa-icon [icon]="['fas', 'save']" size="2x"></fa-icon>
             </button>
         </div>
+
         <div class="vertical-icon-panel">
             <button mat-icon-button (click)="goBack()">
                 <fa-icon [icon]="['fas', 'arrow-circle-left']" size="2x"></fa-icon>

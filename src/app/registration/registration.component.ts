@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
                 private formBuilder:FormBuilder,
                 private router:Router) {
         this.registrationForm = this.formBuilder.group({
-            'username': ['', [Validators.required, Validators.minLength(5)]],
+            'username': ['', [Validators.required, Validators.minLength(4)]],
             'email': ['', [Validators.required, ValidationService.emailValidator]],
             'password': ['', [Validators.required, ValidationService.passwordValidator]],
             'confirmPassword': ['', Validators.required]
